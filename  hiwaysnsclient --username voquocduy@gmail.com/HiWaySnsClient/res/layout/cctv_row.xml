@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<!-- 
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:id="@+id/id_sns_row" android:background="@drawable/sns_list_main_bkgnd" android:layout_width="fill_parent" android:layout_margin="5dip" android:layout_height="fill_parent">
+ -->
+<!-- 
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:id="@+id/id_sns_row" android:layout_width="fill_parent" android:layout_margin="5dip" android:layout_height="fill_parent">
+ -->
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:id="@+id/LinearLayout01"
+			android:layout_width="fill_parent" android:orientation="horizontal" android:layout_height="fill_parent">
+
+		<!--왼쪽 여백				-->
+		<TextView android:id="@+id/TextView01" android:text="" android:layout_width="3dip" android:layout_height="fill_parent" android:gravity="left|center_vertical"></TextView>
+		<LinearLayout android:id="@+id/LinearLayout02" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="fill_parent" android:layout_gravity="center_vertical|center_horizontal" android:gravity="center_vertical|center_horizontal">
+			<ImageView android:layout_width="20dip" android:layout_height="20dip" android:id="@+id/id_img_user" android:background="@drawable/icon_cctv"></ImageView>
+		</LinearLayout>
+
+		<!--사용자 메시지			-->
+		<RelativeLayout android:id="@+id/RelativeLayout01" 
+				android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="5dip" android:layout_margin="5dip">
+			<FrameLayout android:id="@+id/FrameLayout02" android:background="@drawable/sns_list_item_bkgnd" android:layout_height="fill_parent" android:layout_width="fill_parent">
+				<LinearLayout android:id="@+id/LinearLayout02" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+					<LinearLayout android:id="@+id/LinearLayout03" android:layout_width="wrap_content" android:orientation="horizontal" android:layout_centerVertical="true" android:layout_height="wrap_content">
+						<TextView android:layout_width="fill_parent" android:id="@+id/id_msg_contents" android:hint="메시지 내용" android:text="메시지 내용" android:textColor="@color/sns_list_text_main" android:textSize="13dip" android:layout_marginLeft="5dip" android:layout_height="fill_parent" android:lines="20" android:minLines="2" android:gravity="left|center_vertical"></TextView>
+					</LinearLayout>
+				</LinearLayout>
+			</FrameLayout>
+
+			<!--오름쪽 아이콘			-->
+			<!-- 
+			<LinearLayout android:id="@+id/LinearLayout03" android:layout_alignParentRight="true" android:layout_width="wrap_content" android:orientation="horizontal" android:layout_centerVertical="true" android:layout_height="wrap_content">
+				<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/id_img_user" android:src="@drawable/icon_cctv"></ImageView>
+			</LinearLayout>
+			 -->
+		</RelativeLayout>
+
+	</LinearLayout>
+
+<!-- 
+</FrameLayout>
+ -->
+	

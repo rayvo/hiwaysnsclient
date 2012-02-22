@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+			android:id="@+id/id_sns_row" android:layout_width="fill_parent" android:layout_margin="5dip" android:layout_height="fill_parent">
+
+<LinearLayout
+			android:id="@+id/LinearLayout01"
+			android:layout_width="fill_parent" android:orientation="horizontal" android:layout_height="fill_parent">
+
+
+	<!--사용자 이미지(아이콘)	-->
+	<LinearLayout android:id="@+id/LinearLayout02" android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="fill_parent">
+		<ImageView android:layout_width="20dip" android:layout_height="20dip" android:id="@+id/id_img_user" android:background="@drawable/icon_user" android:layout_marginTop="5dip"></ImageView>
+	</LinearLayout>
+	
+	<!--사용자 메시지			-->
+	<RelativeLayout android:id="@+id/RelativeLayout01" 
+		android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="5dip" android:layout_margin="5dip">
+
+		<FrameLayout android:id="@+id/FrameLayout02" android:background="@drawable/list_msg_bkgnd" android:layout_height="fill_parent" android:layout_width="fill_parent">
+		
+		<LinearLayout android:id="@+id/LinearLayout02" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+		
+			<RelativeLayout android:id="@+id/RelativeLayout02" android:layout_alignParentBottom="true" android:layout_width="fill_parent" android:layout_gravity="center_vertical" android:layout_height="wrap_content">	
+				<LinearLayout android:id="@+id/LinearLayout02" android:layout_alignParentLeft="true" android:layout_width="wrap_content" android:orientation="horizontal" android:layout_centerVertical="true" android:layout_height="wrap_content">
+					<TextView android:layout_height="wrap_content" android:layout_width="fill_parent" android:hint="닉네임" android:id="@+id/id_msg_location" android:text="길벗" android:textColor="@color/sns_list_text_sub_1" android:textSize="13dip" android:paddingLeft="25dip" android:paddingTop="10dip"></TextView>
+				</LinearLayout>
+				
+				<LinearLayout android:id="@+id/LinearLayout03" android:layout_alignParentRight="true" android:layout_width="wrap_content" android:orientation="horizontal" android:layout_centerVertical="true" android:layout_height="wrap_content" android:gravity="right">
+					<TextView android:layout_height="wrap_content" android:layout_width="fill_parent" android:hint="메시지 발생시각/위치" android:id="@+id/id_msg_time" android:text="시각/위치" android:textColor="@color/sns_list_text_sub_3" android:textSize="13dip" android:layout_marginLeft="5dip" android:paddingTop="10dip" android:paddingRight="10dip"></TextView>
+				</LinearLayout>
+			</RelativeLayout>
+
+			<LinearLayout android:id="@+id/LinearLayout03" android:layout_width="wrap_content" android:orientation="horizontal" android:layout_centerVertical="true" android:layout_height="wrap_content">
+				<TextView android:layout_width="fill_parent" android:id="@+id/id_msg_contents" android:hint="" android:text="" android:textColor="@color/sns_list_text_main" android:textSize="13dip" android:layout_height="fill_parent" android:lines="20" android:gravity="top|left" android:minLines="2" android:paddingLeft="25dip"></TextView>
+			</LinearLayout>
+		
+			<LinearLayout android:id="@+id/LinearLayout03" android:layout_width="wrap_content" android:orientation="horizontal" android:layout_centerVertical="true" android:layout_height="wrap_content">
+				<TextView android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/sns_list_text_sub_3" android:textSize="13dip" android:text="첨부파일:" android:paddingLeft="25dip" android:paddingBottom="10dip"></TextView>
+				<TextView android:layout_height="wrap_content" android:layout_width="fill_parent" android:textColor="@color/sns_list_text_sub_3" android:layout_marginLeft="5dip" android:textSize="13dip" android:text="없슴." android:id="@+id/id_msg_media_type" android:paddingBottom="10dip"></TextView>		
+			</LinearLayout>
+		</LinearLayout>
+		
+		</FrameLayout>
+
+	</RelativeLayout>
+
+</LinearLayout>
+
+</FrameLayout>
+	

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+			package="kr.co.ex.hiwaysnsclient.main" 
+			android:versionCode="119"
+			android:versionName="1.19">
+			
+	<application android:icon="@drawable/icon" android:label="@string/app_name">
+		<activity android:label="@string/app_name"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:name="HiWayMainActivity">
+		</activity>
+
+		<activity android:name="kr.co.ex.hiwaysnsclient.main.HiWayWarningActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity android:name="kr.co.ex.hiwaysnsclient.main.HiWayInterfaceActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.CALL" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		<activity android:name="kr.co.ex.hiwaysnsclient.main.HiWayInitialActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/app_name">
+		</activity>
+
+		<activity android:name="kr.co.ex.hiwaysnsclient.map.HiWayMapViewActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/app_name">
+		</activity>
+		
+
+		
+		
+		<activity android:name="kr.co.ex.hiwaysnsclient.map.HiWayQuickMsgActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/quick_msg_name"></activity>
+			
+		<activity android:name="kr.co.ex.hiwaysnsclient.sns.HiWaySnsListActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/sns_list_name"></activity>
+		<activity android:name="kr.co.ex.hiwaysnsclient.sns.HiWaySnsNewActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/sns_new_name"></activity>
+		<activity android:name="kr.co.ex.hiwaysnsclient.sns.HiWaySnsViewActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/sns_view_name"></activity>
+		<activity android:name="kr.co.ex.hiwaysnsclient.sns.HiWayVoiceActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/media_voice_name"></activity>
+		<activity android:name="kr.co.ex.hiwaysnsclient.sns.HiWayImageActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/media_image_name"></activity>
+		<activity android:name="kr.co.ex.hiwaysnsclient.sns.HiWayVideoActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/media_video_name"></activity>
+				
+		<activity android:name="kr.co.ex.hiwaysnsclient.facebook.TroasisFBActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.NoTitleBar" ></activity>
+
+		<activity android:name="kr.co.ex.hiwaysnsclient.setup.HiWaySetupActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/setup_name"></activity>
+		<activity android:name="kr.co.ex.hiwaysnsclient.setup.HiWayOptionActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/option_name"></activity>
+		<activity android:name="kr.co.ex.hiwaysnsclient.setup.HiWayDestinationActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:theme="@android:style/Theme.Dialog"
+				android:label="@string/destination_name" ></activity>
+				
+		<activity android:name="kr.co.ex.hiwaysnsclient.lib.ViewerMediaActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="사용자 메시지 보기"></activity>
+		<activity android:name="kr.co.ex.hiwaysnsclient.lib.ViewerCctvActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="CCTV 보기"></activity>
+			
+		<activity android:name="kr.co.ex.hiwaysnsclient.poi.HiWayPoiListActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/poi_name"></activity>
+		<activity android:name="kr.co.ex.hiwaysnsclient.poi.HiWayPoiSubListActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/poi_name"></activity>
+		<activity android:name="kr.co.ex.hiwaysnsclient.poi.HiWayPoiViewActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/poi_view_name"></activity>
+			
+		<activity android:name="kr.co.ex.hiwaysnsclient.cctv.HiWayCctvListActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/cctv_name"></activity>
+		<activity android:name="kr.co.ex.hiwaysnsclient.cctv.HiWayCctvSubListActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait"
+				android:label="@string/cctv_name"></activity>
+				
+		<activity android:name="kr.co.ex.hiwaysnsclient.main.VerticalSlideshow"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait" android:label="@string/app_name">
+		</activity>
+		
+		<activity android:name="kr.co.ex.hiwaysnsclient.message.ShowMessageActivity"
+				android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+				android:screenOrientation="portrait" android:label="@string/app_name">
+		</activity>
+				
+
+		<service android:enabled="true" android:name="kr.co.ex.hiwaysnsclient.service.HiWayCommService"></service>
+		
+		<uses-library android:name="com.google.android.maps" />
+		
+	</application>
+	<uses-sdk android:minSdkVersion="6" />
+
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+	<uses-permission android:name="android.permission.RESTART_PACKAGES"></uses-permission>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+	<uses-permission android:name="android.permission.RECORD_AUDIO"></uses-permission>
+	<uses-permission android:name="android.permission.CAMERA"></uses-permission>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+	
+</manifest> 

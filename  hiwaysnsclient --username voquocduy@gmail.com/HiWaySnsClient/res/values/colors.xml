@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+	<!-- 
+	<color name="color_transparent">#A0000000</color>
+	 -->
+	<color name="color_transparent">#00000000</color>
+
+	<color name="color_white">#AFFFFFFF</color>
+	<color name="color_black">#AF000000</color>
+	
+	<color name="color_title">#AFFFFFFF</color>
+	<color name="color_label">#AF000000</color>
+	<color name="color_title_text">#AF000000</color>
+	
+	<color name="car_text">#AFFFFFFF</color>
+	<color name="car_border">#AF000000</color>
+	
+	<color name="car_mine">#FA00FFFF</color>
+	<!-- 
+	<color name="car_fine">#FA00FF00</color>
+	<color name="car_slow">#FA0000FF</color>
+	<color name="car_delayed">#FAFFFF00</color>
+	<color name="car_blocked">#FAFF0000</color>
+	 -->
+	 <!--(2)
+	<color name="car_fine">#FF00FF00</color>
+	<color name="car_slow">#FF0000FF</color>
+	<color name="car_delayed">#FFFF7F50</color>
+	<color name="car_blocked">#FFFF0000</color>
+	 -->
+	<color name="car_fine">#FF00FF00</color>
+	<color name="car_slow">#FFFF7F50</color>
+	<color name="car_delayed">#FFFF0000</color>
+	<color name="car_blocked">#FF000000</color>
+	 	<color name="car_unknown">#FF555555</color>
+	
+	
+	<color name="car_mine_bkgnd">#AF323232</color>
+	<color name="car_mine_border">#AFFFFFFF</color>
+	
+	<color name="sns_list_text_main">#FF000000</color>
+	<color name="sns_list_text_sub">#FFA0A0A0</color>
+	<color name="sns_list_text_sub_1">#FF0000FF</color>
+	<color name="sns_list_text_sub_2">#FF000000</color>
+	<color name="sns_list_text_sub_3">#FF555555</color>
+</resources>
