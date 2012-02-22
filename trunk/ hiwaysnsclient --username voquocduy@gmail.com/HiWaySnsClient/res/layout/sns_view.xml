@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/RelativeLayout01" 
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent">
+
+
+<!--	상단 영역			-->
+<FrameLayout android:id="@+id/FrameLayout02" android:background="@drawable/main_bkgnd" android:layout_height="fill_parent" android:layout_width="fill_parent">
+
+<LinearLayout android:id="@+id/LinearLayout02" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+
+	<!--	상단 타이틀 바		-->
+	<FrameLayout android:id="@+id/FrameLayout03" android:layout_width="fill_parent" android:layout_height="@dimen/title_bar_height" android:background="@drawable/main_title">
+	
+		<!--하단 공용 메뉴 바: 메뉴버튼 목록	-->
+		<RelativeLayout android:id="@+id/RelativeLayout02" android:layout_alignParentBottom="true" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_gravity="center_vertical">	
+				
+			<LinearLayout android:id="@+id/LinearLayout02" android:layout_alignParentLeft="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_centerVertical="true" android:layout_marginLeft="5dip">
+				<ImageButton android:layout_width="34dip" android:layout_height="27dip" android:id="@+id/id_btn_back" android:background="@drawable/btn_back_xml" android:layout_gravity="center_vertical"></ImageButton>
+			</LinearLayout>
+
+			<LinearLayout android:id="@+id/LinearLayout04" android:layout_centerInParent="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_centerVertical="true">
+				<!--TextView android:id="@+id/id_txt_title" android:layout_height="wrap_content" android:layout_gravity="center_vertical|center_horizontal" android:textSize="20dip" android:layout_width="wrap_content" android:textColor="@color/color_title" android:text="@string/sns_view_name"></TextView-->
+			</LinearLayout>
+
+			<LinearLayout android:id="@+id/LinearLayout03" android:layout_alignParentRight="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_centerVertical="true" android:layout_marginRight="5dip">
+			</LinearLayout>
+		
+		</RelativeLayout>
+	
+	</FrameLayout>
+	
+	<!--	작업영역				-->
+	<ScrollView android:id="@+id/ScrollView0401" 
+			android:layout_width="fill_parent" android:scrollbars="vertical" android:visibility="visible" android:layout_height="466dip">
+	<LinearLayout android:id="@+id/LinearLayout02" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+	<TextView android:id="@+id/TextView03" android:layout_width="fill_parent" android:layout_height="10dip"></TextView>
+	
+	<LinearLayout android:id="@+id/LinearLayout02" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+		<LinearLayout android:id="@+id/LinearLayout02" android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+			<ImageView android:layout_width="20dip" android:layout_height="20dip" android:id="@+id/id_img_user" android:background="@drawable/icon_user" android:textColor="@color/sns_list_text_sub" android:layout_marginLeft="5dip" android:layout_gravity="top|left"></ImageView>
+			<TextView android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/id_msg_title" android:hint="메시지 정보" android:layout_marginLeft="5dip" android:textColor="@color/color_label"></TextView>
+		</LinearLayout>
+
+		<TextView android:layout_height="3dip" android:layout_width="fill_parent" android:id="@+id/TextView031"></TextView>
+		<FrameLayout android:id="@+id/FrameLayout02" android:background="@drawable/sns_list_item_bkgnd" android:layout_height="fill_parent" android:layout_width="fill_parent" android:layout_marginLeft="5dip" android:layout_marginRight="10dip">
+			<LinearLayout android:id="@+id/LinearLayout03" android:layout_width="wrap_content" android:orientation="horizontal" android:layout_centerVertical="true" android:layout_height="wrap_content" android:layout_marginLeft="5dip" android:layout_marginRight="10dip">
+				<TextView android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/id_msg_contents" android:hint="" android:textSize="14dip" android:layout_marginLeft="5dip" android:textColor="@color/color_black" android:background="@color/color_white" android:lines="20" android:minLines="6" android:gravity="top|left" android:layout_marginRight="10dip"></TextView>
+			</LinearLayout>
+		</FrameLayout>
+		<!-- 
+		<EditText android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/id_msg_contents" android:hint="" android:scrollbarAlwaysDrawVerticalTrack="true" android:scrollbars="vertical" android:lines="20" android:minLines="6" android:gravity="top|left"></EditText>
+		 -->
+
+		<TextView android:id="@+id/TextView03" android:layout_width="fill_parent" android:layout_height="1dip"></TextView>
+		<TextView android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/id_msg_time" android:hint="메시지 작성시각" android:layout_marginLeft="5dip" android:textColor="@color/color_label"></TextView>
+		<TextView android:id="@+id/TextView03" android:layout_width="fill_parent" android:layout_height="1dip"></TextView>
+	</LinearLayout>
+
+	<!--	입력 멀티미디어 정보.	-->
+	<LinearLayout android:id="@+id/LinearLayout04" android:layout_height="fill_parent" android:orientation="vertical" android:layout_width="fill_parent">
+		<LinearLayout android:id="@+id/LinearLayout04" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_width="fill_parent">
+			<RelativeLayout android:id="@+id/RelativeLayout02" android:layout_alignParentBottom="true" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_gravity="center_vertical">	
+				<LinearLayout android:id="@+id/LinearLayout02" android:layout_alignParentLeft="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_centerVertical="true">
+					<TextView android:id="@+id/TextView01" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="첨부파일:" android:layout_marginLeft="5dip" android:textColor="@color/color_label"></TextView>
+					<TextView android:layout_height="wrap_content" android:id="@+id/id_txt_media_type" android:text="없슴." android:layout_marginLeft="5dip" android:layout_width="wrap_content" android:textColor="@color/color_label"></TextView>
+				</LinearLayout>
+				
+				<LinearLayout android:id="@+id/LinearLayout03" android:layout_alignParentRight="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_centerVertical="true">
+					<ImageButton android:layout_width="34dip" android:layout_height="28dip" android:id="@+id/id_btn_view_attached" android:background="@drawable/btn_attach_view_xml" android:layout_gravity="center_vertical" android:layout_marginRight="5dip"></ImageButton>
+				</LinearLayout>
+			</RelativeLayout>
+		</LinearLayout>
+
+		<TextView android:text="" android:id="@+id/TextView02" android:layout_height="2dip" android:layout_width="fill_parent"></TextView>
+		<FrameLayout android:id="@+id/id_pannel_play" android:layout_height="fill_parent" android:layout_width="fill_parent" android:layout_gravity="center_horizontal">
+			<!-- 	비디오 재생 Preview 영역.		 -->
+			<VideoView android:id="@+id/id_view_video_play" android:layout_height="fill_parent" android:layout_width="fill_parent" android:layout_gravity="center_horizontal"></VideoView>
+
+			<!-- 	이미지 재생 Preview 영역.		 -->
+			<ImageView android:id="@+id/id_view_image" android:layout_width="fill_parent" android:layout_height="fill_parent"/>
+		</FrameLayout>
+	</LinearLayout>
+
+	<TextView android:id="@+id/TextView02" android:layout_width="fill_parent" android:layout_height="200dip"></TextView>
+	</LinearLayout>
+	</ScrollView>
+
+</LinearLayout>
+
+</FrameLayout>
+<!--	(끝)상단 영역		-->
+
+
+ 
+
+<!--	하단 공용 메뉴 바		-->
+<LinearLayout android:id="@+id/LinearLayout01"
+			android:layout_alignParentBottom="true"
+			android:layout_height="wrap_content" android:layout_width="fill_parent">
+
+	<!--	하단 공용 메뉴 바: 메뉴바 배경	-->
+	<FrameLayout android:id="@+id/FrameLayout01" android:layout_width="fill_parent" android:layout_height="@dimen/footer_bar_height" android:background="@drawable/footer_bkgnd">
+	
+		<!--	하단 공용 메뉴 바: 메뉴버튼 목록	-->
+		<RelativeLayout android:id="@+id/RelativeLayout02" android:layout_alignParentBottom="true" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_gravity="center_vertical">	
+				
+			<LinearLayout android:id="@+id/LinearLayout02" android:layout_alignParentLeft="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_centerVertical="true">
+			</LinearLayout>
+			
+			<LinearLayout android:id="@+id/LinearLayout03" android:layout_alignParentRight="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_centerVertical="true" android:layout_marginRight="5dip">
+				<ImageButton android:layout_width="39dip" android:layout_height="32dip" android:id="@+id/id_btn_reply" android:background="@drawable/btn_reply_xml" android:layout_gravity="center_vertical"></ImageButton>
+				<TextView android:id="@+id/TextView02" android:layout_height="wrap_content" android:layout_width="7dip"></TextView>
+				<ImageButton android:layout_width="39dip" android:layout_height="32dip" android:id="@+id/id_btn_new" android:background="@drawable/btn_new_xml" android:layout_gravity="center_vertical"></ImageButton>
+			</LinearLayout>
+		
+		</RelativeLayout>
+	
+	</FrameLayout>
+
+</LinearLayout>
+<!--	(끝)하단 공용 메뉴 바	-->
+
+
+</RelativeLayout>
+	

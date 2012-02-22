@@ -1,0 +1,19 @@
+#Sat Jan 08 17:35:25 KST 2011
+eclipse.preferences.version=1
+encoding//WebContent/admin/index.jsp=UTF-8
+encoding//WebContent/common/config.jsp=UTF-8
+encoding//WebContent/index.jsp=UTF-8
+encoding//WebContent/install/setup_if_db_reset.jsp=UTF-8
+encoding//WebContent/install_oracle/oracle_setup_cctv_reset.jsp=UTF-8
+encoding//WebContent/install_oracle/oracle_setup_db_main.jsp=UTF-8
+encoding//WebContent/status/active_user_list.jsp=UTF-8
+encoding//WebContent/status/index.jsp=UTF-8
+encoding//WebContent/web_service/a_login.jsp=UTF-8
+encoding//src/kr/co/ex/hiwaysns/HiWayCommServer.java=UTF-8
+encoding//src/kr/co/ex/hiwaysns/HiWayDbServer.java=UTF-8
+encoding//src/kr/co/ex/hiwaysns/lib/TrOasisConstants.java=UTF-8
+encoding//src/kr/co/ex/hiwaysns/lib/TrOasisMapLink.java=UTF-8
+encoding//src/kr/co/ex/hiwaysns/lib/TrOasisParamPassing.java=UTF-8
+encoding//src/kr/co/ex/hiwaysns/lib/TrOasisPosLog.java=UTF-8
+encoding//src/kr/co/ex/hiwaysns/lib/TrOasisXmlProc.java=UTF-8
+encoding/<project>=UTF-8

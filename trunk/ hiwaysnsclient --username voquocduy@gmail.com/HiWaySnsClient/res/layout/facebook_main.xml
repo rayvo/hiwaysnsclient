@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:background="@drawable/main_bkgnd" android:layout_height="fill_parent"
+	android:gravity="center_horizontal">
+
+	<FrameLayout android:id="@+id/FrameLayout03"
+		android:layout_width="fill_parent" android:layout_height="@dimen/title_bar_height"
+		android:background="@drawable/main_title">
+
+		<!--하단 공용 메뉴 바: 메뉴버튼 목록 -->
+		<RelativeLayout android:id="@+id/RelativeLayout02"
+			android:layout_alignParentBottom="true" android:layout_width="fill_parent"
+			android:layout_height="wrap_content" android:layout_gravity="center_vertical">
+
+			<LinearLayout android:id="@+id/LinearLayout02"
+				android:layout_alignParentLeft="true" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:orientation="horizontal"
+				android:layout_centerVertical="true" android:layout_marginLeft="5dip">
+				<ImageButton android:layout_width="40dip"
+					android:layout_height="34dip" android:id="@+id/id_btn_back"
+					android:background="@drawable/btn_back_xml" android:layout_gravity="center_vertical"></ImageButton>
+			</LinearLayout>
+			<LinearLayout android:id="@+id/LinearLayout03"
+				android:layout_alignParentRight="true" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:orientation="horizontal"
+				android:layout_centerVertical="true" android:layout_marginRight="5dip">
+				<kr.co.ex.hiwaysnsclient.facebook.LoginButton
+					android:id="@+id/login" android:src="@drawable/login_button"
+					android:layout_width="100dip" android:layout_height="70dip"
+					android:layout_gravity="center_vertical" />
+			</LinearLayout>
+		</RelativeLayout>
+	</FrameLayout>
+
+	<LinearLayout android:id="@+id/LinearLayout02"
+		android:layout_alignParentLeft="true" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="horizontal"
+		android:layout_centerVertical="true" android:layout_marginLeft="5dip"
+		android:layout_marginTop="20dip">
+		<ImageView android:id="@+id/user_pic" android:layout_width="wrap_content"
+			android:layout_height="wrap_content" android:layout_alignParentTop="true"
+			android:layout_alignParentBottom="true" android:layout_marginRight="6dip" />
+		<TextView android:id="@+id/txt" android:text=""
+			android:layout_gravity="center|center_vertical" android:textColor="#003366"
+			android:layout_width="wrap_content" android:textSize="23px"
+			android:textStyle="bold" android:layout_height="wrap_content" />
+	</LinearLayout>
+
+	<LinearLayout android:id="@+id/linMainLayout"
+		android:layout_alignParentLeft="true" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:orientation="vertical"
+		android:gravity="center|center_horizontal"
+		android:layout_centerVertical="true">
+		<LinearLayout android:orientation="horizontal"
+			android:layout_width="fill_parent" android:layout_height="wrap_content"
+			android:gravity="center_horizontal">
+			<ImageButton android:layout_width="110dip"
+				android:layout_height="35dip" android:id="@+id/uploadButton"
+				android:visibility="invisible" android:paddingRight="20dp"
+				android:background="@drawable/btn_upload_xml" android:paddingLeft="20dp"
+				android:layout_margin="20dp" />
+			<ImageButton android:layout_width="110dip"
+				android:layout_height="35dip" android:id="@+id/postButton"
+				android:visibility="invisible" android:paddingRight="20dp"
+				android:background="@drawable/btn_wall_post_xml"
+				android:paddingLeft="20dp" android:layout_margin="20dp" />
+		</LinearLayout>
+		<TableLayout android:layout_width="fill_parent"
+			android:stretchColumns="0" android:layout_height="wrap_content">
+			<TableRow>
+				<TextView android:id="@+id/txt" android:text="@string/comment"
+					android:layout_gravity="bottom" android:layout_width="70dip"
+					android:textStyle="bold" android:textColor="@color/color_black"
+					android:layout_height="wrap_content" />
+				<LinearLayout android:layout_alignParentRight="true" android:layout_gravity="bottom"
+					android:layout_width="fill_parent" android:layout_height="wrap_content">
+					<CheckBox android:id="@+id/chkDrivingStatus" android:text="Driving Status"
+						android:checked="true" android:layout_width="wrap_content" android:layout_gravity="bottom"
+						android:textStyle="bold" android:layout_marginRight="5px" android:textSize="22px"
+						android:textColor="@color/color_black" android:layout_height="wrap_content">
+					</CheckBox>
+				</LinearLayout>
+			</TableRow>
+		</TableLayout>
+
+		<LinearLayout android:layout_width="fill_parent"
+			android:layout_height="60dip">
+			<EditText android:id="@+id/txtPost" android:layout_height="fill_parent"
+				android:layout_width="fill_parent" android:layout_gravity="center|center_horizontal"
+				android:textColor="@color/color_title_text" />
+		</LinearLayout>
+		<TableLayout android:layout_width="fill_parent"
+			android:layout_height="fill_parent" android:layout_marginTop="5px"
+			android:stretchColumns="0">
+			<TableRow>
+				<LinearLayout android:gravity="center_horizontal" android:layout_height="wrap_content" android:layout_marginTop="15px"
+					android:orientation="vertical" android:layout_width="fill_parent">
+					<LinearLayout android:gravity="center_horizontal"
+						android:orientation="horizontal" android:layout_marginTop="5px"
+						android:layout_width="fill_parent" android:layout_height="wrap_content">
+						<ImageButton android:layout_width="45dip"
+							android:layout_height="35dip" android:id="@+id/id_btn_rotate_left"
+							android:background="@drawable/btn_rotate_left_xml"
+							android:layout_gravity="center_vertical"></ImageButton>
+						<ImageButton android:layout_width="45dip"
+							android:layout_height="35dip" android:id="@+id/id_btn_rotate_right"
+							android:background="@drawable/btn_rotate_right_xml"
+							android:layout_gravity="center_vertical"></ImageButton>
+					</LinearLayout>
+					<LinearLayout android:gravity="center_horizontal" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="25px">
+						<ImageButton android:layout_width="85dip"
+							android:layout_gravity="center_vertical" android:layout_height="35dip"
+							android:id="@+id/takePictureButton" 
+							android:background="@drawable/btn_take_photo_xml" />
+					</LinearLayout>
+				</LinearLayout>
+				<LinearLayout android:gravity="center_horizontal"
+					android:layout_gravity="center_vertical" android:background="#000000" android:layout_marginRight="2px" android:layout_marginBottom="5px"
+					android:layout_width="210dip" android:layout_height="224dip">
+					<ImageView android:id="@+id/imgScreenshot"
+						android:layout_width="200dip" android:layout_height="200dip"
+						android:layout_gravity="center"
+						android:adjustViewBounds="true" />
+				</LinearLayout>
+			</TableRow>
+		</TableLayout>
+
+	</LinearLayout>
+</LinearLayout>
