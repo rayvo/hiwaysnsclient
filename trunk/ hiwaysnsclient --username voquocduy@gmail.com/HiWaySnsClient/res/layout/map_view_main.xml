@@ -66,17 +66,12 @@
 					android:apiKey="0KzoLReZ_O67rXeAWyL5ef1mZTuh1nsEzHlfOZA" //MSI 노트북. android:apiKey="0KzoLReZ_O65lA6-4HBoyhs0uRf9et6aGXZFnvQ" 
 					//MacBook Pro. android:apiKey="0kACDo3ev28mztTjGkEOSdpJhvXl9Z6O2goHmRw" //Private 
 					API Key. /> -->
-					<!-- Ray Computer -->
-					 <!-- <com.google.android.maps.MapView
-						android:id="@+id/id_map" android:layout_width="fill_parent"
-						android:layout_height="fill_parent" android:enabled="true"
-						android:clickable="true" android:apiKey="0-yXa96XnxfesU5_RcspNFikzlV4eOQebbT964g" /> --> 
-					<!-- Server Computer -->
+					
 					 <com.google.android.maps.MapView
 						android:id="@+id/id_map" android:layout_width="fill_parent"
 						android:layout_height="fill_parent" android:enabled="true"
-						android:clickable="true" android:apiKey="0kACDo3ev28mr-jG7p-63dGHqFfB-7Drm9IP4Eg" />
-					
+						android:clickable="true" android:apiKey="0-yXa96XnxfesU5_RcspNFikzlV4eOQebbT964g" /> 
+
 				<!-- <LinearLayout android:layout_width="wrap_content"
 					android:layout_height="wrap_content" android:id="@+id/id_linear_map" 
 					android:orientation="vertical"> 
