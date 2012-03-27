@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+        <string name="hello">Welcome to </string>
+    <string name="app_name">Elve</string>
+    
+    
+    <string name="msg_bluetooth_confirm">Please plug in or turn on your Bluetooth devices</string>
+    <string name="msg_exit_program">Do you want to exit?</string>
+    
+    <string name="caption_btn_yes">Yes</string>
+	<string name="caption_btn_no">No</string>
+	<string name="caption_btn_back">Back</string>
+	<string name="caption_btn_exit">Exit</string>
+	<string name="caption_btn_accept">Accept</string>
+	<string name="caption_btn_ok">Confirm</string>
+	<string name="caption_btn_cancel">Cancel</string>
+	<string name="caption_btn_menu">Menu</string>
+	<string name="caption_btn_refresh">Refresh</string>
+	
+	<string name="main_no_items">No orders to display</string>
+</resources>
