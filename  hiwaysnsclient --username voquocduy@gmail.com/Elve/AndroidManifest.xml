@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.cewit.elve.activity" android:versionCode="1"
+	android:versionName="1.0">
+
+	<application android:icon="@drawable/icon" android:label="@string/app_name">
+		<uses-library android:name="com.google.android.maps" />
+
+		<activity android:name=".WarningActivity"
+			android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+			android:screenOrientation="portrait" android:label="@string/app_name"
+			android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".ElveMainActivity"
+			android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+			android:screenOrientation="portrait" android:label="@string/app_name"
+			android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+			<intent-filter>
+				<action android:name="android.intent.action.CALL" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".ElveStatusActivity"
+			android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+			android:screenOrientation="portrait" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.CALL" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".MapTabActivity" android:label="Hello Map">
+			<intent-filter>
+				<category android:name="android.intent.category.EMBED"></category>
+				<action android:name="android.intent.action.MAIN"></action>
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".ElveSettingActivity"
+			android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+			android:screenOrientation="portrait" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.CALL" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+
+		<activity android:name=".ElveAboutActivity"
+			android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+			android:screenOrientation="portrait" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.CALL" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+
+
+
+
+	</application>
+	<uses-sdk android:minSdkVersion="3" />
+	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"></uses-permission>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+	<uses-permission android:name="android.permission.RESTART_PACKAGES"></uses-permission>
+	<uses-permission android:name="android.permission.RECORD_AUDIO"></uses-permission>
+	<uses-permission android:name="android.permission.CAMERA"></uses-permission>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+
+</manifest>
