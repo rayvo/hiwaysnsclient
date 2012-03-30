@@ -18,4 +18,10 @@
 	<string name="caption_btn_refresh">Refresh</string>
 	
 	<string name="main_no_items">No orders to display</string>
+	
+	<string name="bt_not_enable_blue">Bluetooth is not available</string>
+    <string name="bt_not_enable_leaving">start error</string>
+    <string name="select_device">Receiving Data</string>
+    <string name="none_found">none found</string>
+    
 </resources>

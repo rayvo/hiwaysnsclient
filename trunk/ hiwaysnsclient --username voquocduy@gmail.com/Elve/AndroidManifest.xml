@@ -5,6 +5,19 @@
 
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
 		<uses-library android:name="com.google.android.maps" />
+		
+		<service android:enabled="true" android:name=".ElveService" />
+		
+		<activity android:name=".TestActivity"
+			android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+			android:screenOrientation="portrait" android:label="@string/app_name"
+			android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+			<intent-filter>
+				<action android:name="android.intent.action.CALL" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+		</activity>
+		
 
 		<activity android:name=".WarningActivity"
 			android:configChanges="orientation|keyboardHidden|keyboard|navigation"
@@ -60,7 +73,22 @@
 			</intent-filter>
 		</activity>
 
-
+		<activity android:name=".BlueTooth"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.CALL" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <activity android:name=".BlueToothClient"
+			android:configChanges="orientation|keyboardHidden|keyboard|navigation"
+			android:screenOrientation="portrait" android:label="@string/app_name">
+			<intent-filter>
+				<action android:name="android.intent.action.BlueToothClient"></action>
+			</intent-filter>
+		</activity>
+		
 
 
 	</application>
@@ -74,5 +102,9 @@
 	<uses-permission android:name="android.permission.RECORD_AUDIO"></uses-permission>
 	<uses-permission android:name="android.permission.CAMERA"></uses-permission>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+	
+	<uses-permission android:name='android.permission.BLUETOOTH'/>
+    <uses-permission android:name='android.permission.BLUETOOTH_ADMIN'/>
+    
 
 </manifest>

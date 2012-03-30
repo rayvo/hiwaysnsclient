@@ -2,45 +2,79 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
-	<ImageView android:src="@drawable/btn_discharge_1"
-		android:layout_height="wrap_content" android:id="@+id/imageView1"
-		android:layout_width="wrap_content"></ImageView>
-	<ImageView android:src="@drawable/btn_discharge"
-		android:layout_height="wrap_content" android:id="@+id/imageView1"
-		android:layout_width="wrap_content"></ImageView>
-	<ImageView android:src="@drawable/btn_unplugged"
-		android:layout_height="wrap_content" android:id="@+id/imageView1"
-		android:layout_width="wrap_content"></ImageView>
-	<ImageView android:id="@+id/imageButton1"
-		android:layout_height="wrap_content" android:src="@drawable/btn_map_confirm"
-		android:layout_width="wrap_content"></ImageView>
-	<LinearLayout android:orientation="horizontal"
-		android:layout_width="fill_parent" android:layout_height="fill_parent">
-		<LinearLayout android:orientation="vertical"
-			android:layout_width="wrap_content" android:layout_height="wrap_content">
-			<TextView android:layout_width="fill_parent"
-				android:layout_height="125px" />
-			<ImageView android:src="@drawable/btn_bps"
-				android:layout_height="wrap_content" android:id="@+id/imageView1"
-				android:layout_width="wrap_content"></ImageView>
-			<ImageView android:src="@drawable/btn_bps_3"
-				android:layout_height="wrap_content" android:id="@+id/imageView1"
-				android:layout_width="wrap_content"></ImageView>
-		</LinearLayout>
-		<ImageView android:src="@drawable/btn_battery_10"
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal">
+		<ImageView android:src="@drawable/btn_discharge_4"
+			android:layout_height="wrap_content" android:id="@+id/discharge"
+			android:layout_width="250px"></ImageView>
+		<ImageView android:src="@drawable/btn_discharge"
+			android:layout_marginLeft="5px" android:layout_marginTop="-15px"
 			android:layout_height="wrap_content" android:id="@+id/imageView1"
-			android:layout_width="wrap_content"></ImageView>
-		<LinearLayout android:orientation="vertical"
-			android:layout_width="wrap_content" android:layout_height="wrap_content">
-			<TextView android:layout_width="fill_parent"
-				android:layout_height="125px" />
-			<ImageView android:src="@drawable/btn_aps"
-				android:layout_height="wrap_content" android:id="@+id/imageView1"
-				android:layout_width="wrap_content"></ImageView>
-			<ImageView android:src="@drawable/btn_aps_7"
-				android:layout_height="wrap_content" android:id="@+id/imageView1"
-				android:layout_width="wrap_content"></ImageView>
-		</LinearLayout>
+			android:layout_width="200px"></ImageView>
+
+		<TextView android:layout_width="fill_parent"
+			android:layout_height="25px" />
+
+		<ImageView android:src="@drawable/btn_unplugged"
+			android:layout_height="wrap_content" android:id="@+id/plug"
+			android:layout_width="270px"></ImageView>
 	</LinearLayout>
+	<LinearLayout android:orientation="vertical"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_gravity="center_horizontal">
+		<ImageView android:id="@+id/map_confirm"
+			android:layout_height="wrap_content" android:src="@drawable/btn_map_confirm"
+			android:layout_width="wrap_content"></ImageView>
+	</LinearLayout>
+	<!-- <LinearLayout android:orientation="horizontal" android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" android:layout_gravity="center_horizontal"> 
+		<LinearLayout android:orientation="vertical" android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"> <TextView android:layout_width="fill_parent" 
+		android:layout_height="125px" /> <ImageView android:src="@drawable/btn_bps" 
+		android:layout_height="wrap_content" android:id="@+id/imageView1" android:layout_width="wrap_content"></ImageView> 
+		<ImageView android:src="@drawable/btn_bps_3" android:layout_height="wrap_content" 
+		android:id="@+id/imageView1" android:layout_width="wrap_content"></ImageView> 
+		</LinearLayout> <ImageView android:src="@drawable/btn_battery_10" android:layout_height="wrap_content" 
+		android:id="@+id/imageView1" android:layout_width="wrap_content"></ImageView> 
+		<LinearLayout android:orientation="vertical" android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"> <TextView android:layout_width="fill_parent" 
+		android:layout_height="125px" /> <ImageView android:src="@drawable/btn_aps" 
+		android:layout_height="wrap_content" android:id="@+id/imageView1" android:layout_width="wrap_content"></ImageView> 
+		<ImageView android:src="@drawable/btn_aps_7" android:layout_height="wrap_content" 
+		android:id="@+id/imageView1" android:layout_width="wrap_content"></ImageView> 
+		</LinearLayout> </LinearLayout> -->
+	<TableLayout android:id="@+id/tableLayout1" android:orientation="horizontal" android:layout_marginLeft="3px"
+		android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_gravity="center_horizontal">
+		<TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+			<LinearLayout android:orientation="vertical"
+				android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="-10px">
+				<TextView android:layout_width="fill_parent"
+					android:layout_height="85px" />
+				<ImageView android:src="@drawable/btn_bps"
+					android:layout_height="wrap_content" android:id="@+id/imageView1" android:layout_gravity="right"
+					android:layout_width="wrap_content" android:layout_alignParentRight="true"></ImageView>
+				<ImageView android:src="@drawable/btn_bps_8"
+					android:layout_height="wrap_content" android:id="@+id/imgBps"
+					android:layout_width="wrap_content"></ImageView>
+			</LinearLayout>
+			<ImageView android:src="@drawable/btn_battery_10" 
+				android:layout_height="200px" android:id="@+id/imgSoc"
+				android:layout_width="wrap_content" android:layout_marginLeft="-8px"></ImageView>
+			<LinearLayout android:orientation="vertical"
+				android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="-17px">
+				<TextView android:layout_width="fill_parent"
+					android:layout_height="85px" />
+				<ImageView android:src="@drawable/btn_aps"
+					android:layout_height="wrap_content" android:id="@+id/imageView1"
+					android:layout_width="wrap_content"></ImageView>
+				<ImageView android:src="@drawable/btn_aps_8"
+					android:layout_height="wrap_content" android:id="@+id/imgAps"
+					android:layout_width="wrap_content"></ImageView>
+			</LinearLayout>
+
+		</TableRow>
+	</TableLayout>
 
 </LinearLayout>
