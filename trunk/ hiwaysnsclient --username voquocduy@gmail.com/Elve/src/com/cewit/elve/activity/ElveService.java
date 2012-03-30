@@ -147,7 +147,7 @@ public class ElveService extends Service {
 	@Override
 	public void onDestroy() {
 		handler.removeCallbacks(sendUpdatesToUI);
-		super.onDestroy();
+		 super.onDestroy();
 	}
 
 	/**
