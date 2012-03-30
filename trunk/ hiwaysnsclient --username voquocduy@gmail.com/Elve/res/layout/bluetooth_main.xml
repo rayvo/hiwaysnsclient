@@ -9,7 +9,7 @@
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
 
-    android:text="블루투스 검색"
+    android:text="Scan for bluetooth devices"
     />
 
 <ListView 
