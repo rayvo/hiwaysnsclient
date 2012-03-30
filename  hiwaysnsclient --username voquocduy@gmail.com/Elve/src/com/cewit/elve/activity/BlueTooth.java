@@ -21,9 +21,6 @@ import android.widget.ListView;
 public class BlueTooth extends Activity {
 	
 	
-	private static final int REQUEST_CONNECT_DEVICE=1;
-	private static final int REQUEST_ENABLE_BT=2;
-		
 	ArrayList<String> arGeneral;
 	ArrayAdapter<String> Adapter;
 	
@@ -132,69 +129,13 @@ public class BlueTooth extends Activity {
 			  }
 		  }
 	  }
-  };
-    
-  /*
-  String DownloadHtml(String addr){
-	  StringBuilder html=new StringBuilder();
-	  try{
-		  URL url=new URL(addr);
-		  HttpURLConnection conn=(HttpURLConnection)url.openConnection();
-		  if(conn != null){
-			  conn.setConnectTimeout(1000);
-			  conn.setUseCaches(false);
-			  if(conn.getResponseCode()==HttpURLConnection.HTTP_OK){
-				  BufferedReader br=new BufferedReader(new InputStreamReader(conn.getInputStream()));
-				  
-				  for(;;){
-					  String line=br.readLine();
-					  if(line==null)break;
-					  html.append(line+'\n');
-				  }
-				  br.close();
-			  }
-			  conn.disconnect();
-		  }
-	  }
-	  catch(Exception ex){;}
-	  return html.toString();
-	  
-  }
-  */
-  
-  
-  /*
-    public void onStart(){
-    	Log.d(tag,"##############.onstart");
-    	if(!mBTAdapter.isEnabled()){
-    		Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-    		startActivityForResult(enableIntent,REQUEST_ENABLE_BT);
-    		
-    	}
-    }
-    
-    public void onActivityResult(int requestCode, int resultCode, Intent date){
-    	Log.d(tag,"##############.onactivityresult");
-    	
-    	switch(requestCode){
-    	case REQUEST_CONNECT_DEVICE:
-    		
-    	case REQUEST_ENABLE_BT:
-    		if(resultCode == Activity.RESULT_OK){
-    //			setupChat();
-    		}
-    		else{
-    			Toast.makeText(this,R.string.bt_not_enable_leaving, Toast.LENGTH_SHORT).show();
-    //			finish();
-    		}
-    	}
-    }
-   */
+  };    
   
   /**
    * 등록한 브로드캐스트리시버의 등록 취소
    */
   public void onDestroy(){
+	  super.onDestroy();
 	  unregisterReceiver(mReceiver);
   }
   

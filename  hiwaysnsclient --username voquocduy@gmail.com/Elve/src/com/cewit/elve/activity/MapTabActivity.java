@@ -62,7 +62,7 @@ public class MapTabActivity extends MapActivity {
 			double lat = location.getLatitude();
 			double lng = location.getLongitude();
 			Toast.makeText(MapTabActivity.this,
-					"Location Are" + lat + ":" + lng, Toast.LENGTH_SHORT)
+					"Location At Latitude = " + lat + ": Longitude = " + lng, Toast.LENGTH_SHORT)
 					.show();
 			GeoPoint point = new GeoPoint((int) (lat * 1E6), (int) (lng * 1E6));
 			mapController.animateTo(point, new Message());
@@ -93,7 +93,7 @@ public class MapTabActivity extends MapActivity {
 					double lat = l.getLatitude();
 					double lng = l.getLongitude();
 					Toast.makeText(MapTabActivity.this,
-							"Location Are" + lat + ":" + lng,
+							"Location At Latitude = " + lat + ": Longitude = " + lng,
 							Toast.LENGTH_SHORT).show();
 				}
 			}
@@ -222,7 +222,7 @@ public class MapTabActivity extends MapActivity {
 			if (borderPaint == null) {
 				if (flag) {
 					borderPaint = new Paint();
-					borderPaint.setARGB(255, 5, 5, 0);
+					borderPaint.setARGB(255, 255, 235, 250);
 					borderPaint.setAntiAlias(true);
 					borderPaint.setStyle(Style.STROKE);
 					borderPaint.setStrokeWidth(2);	
