@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.widget.ProgressBar;
 
+
 public class WarningActivity extends Activity {
 	ProgressBar myProgressBar;
 	int myProgress = 0;
@@ -46,7 +47,7 @@ public class WarningActivity extends Activity {
 
 					Intent intent = new Intent(
 							WarningActivity.this.getApplication(),
-							ElveMainActivity.class);
+							BlueTooth.class);
 					startActivity(intent);
 					finish();
 

@@ -9,21 +9,24 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.TabHost;
-import android.widget.TabHost.TabSpec;
 
-import com.cewit.elve.bluetooth.BluetoothManager;
 
 public class ElveMainActivity extends TabActivity {
 	TabHost mTabHost;
 	FrameLayout mFrameLayout;
 
+	
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
+		
+		
+		
 		BluetoothManager manager = new BluetoothManager();
+		
 		if (!manager.isOn()) {
 			dspDlgBluetoothFail();
 		}
