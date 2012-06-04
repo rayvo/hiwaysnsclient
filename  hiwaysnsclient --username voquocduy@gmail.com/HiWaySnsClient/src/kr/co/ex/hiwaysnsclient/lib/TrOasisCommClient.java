@@ -46,9 +46,9 @@ public class TrOasisCommClient
 //	public	static	final	String	SERVER_IP	= "211.56.151.87:8080";		//공인 서버 - 도공 - Original.
 	// public	static	final	String	SERVER_IP	= "112.216:8080";		//공인 서버 - 도공 - 신규.
 	
-	//TODO RayVO  public	static	final	String	SERVER_IP	= "180.182.57.146:8080";		//공인 서버 - 도공 - 신규.
-	public	static	final	String	SERVER_IP	= "2.2.14.103:8080";		//공인 서버 - 도공 - 신규.
-	//TODO RayVo public	static	final	String	SERVER_IP	= "180.148.181.87:8080";		//공인 서버 - 도공 - 신규.
+	//TODO RayVo public	static	final	String	SERVER_IP	= "180.182.57.146:8080";		//공인 서버 - 도공 - 신규.
+	//TODO RayVO  public	static	final	String	SERVER_IP	= "2.2.14.103:8080";		//공인 서버 - 도공 - 신규.
+	public	static	final	String	SERVER_IP	= "180.148.181.87:8080";		//공인 서버 - 도공 - 신규.
 	//public	static	final	String	SERVER_IP	= "dogong.hscdn.com:8080";		//공인 서버 - 효성 ITX.
 	//public static final String SERVER_IP="203.252.180.80:8080"; //Esther's IP
 	private static	final	String	WS_NAME					= "/HiWaySnsServer/web_service/";
