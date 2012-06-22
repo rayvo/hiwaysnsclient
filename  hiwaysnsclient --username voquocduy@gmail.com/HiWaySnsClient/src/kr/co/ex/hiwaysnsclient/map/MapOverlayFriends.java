@@ -456,7 +456,9 @@ public class MapOverlayFriends extends Overlay
 			
 			//속도에 따른 Paint 선택.
 			Paint	markDraw;
-			switch( TrOasisLocGps.getDriveStatus(mListMyRoad.get(i).mSpeed) )
+			
+			//switch( TrOasisLocGps.getDriveStatus(mListMyRoad.get(i).mSpeed) )
+			switch( TrOasisLocGps.getDriveStatusHiWay(mListMyRoad.get(i).mSpeed) )
 			{
 			case TrOasisConstants.DRIVE_STATUS_SLOW	:
 				markDraw	= mPaintSlowRoad;
