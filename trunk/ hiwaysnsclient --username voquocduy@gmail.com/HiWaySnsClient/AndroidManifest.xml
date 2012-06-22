@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 			package="kr.co.ex.hiwaysnsclient.main" 
-			android:versionCode="119"
-			android:versionName="1.19">
+			android:versionCode="120"
+			android:versionName="1.20">
 			
 	<application android:icon="@drawable/icon" android:label="@string/app_name">
 		<activity android:label="@string/app_name"
