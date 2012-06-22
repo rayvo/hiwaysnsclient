@@ -35,6 +35,7 @@ public class HiWayQuickMsgActivity extends HiWayBasicActivity
 
 	//음성인식 모듈 호출 명령어.
 	public	static	final	int		VOICE_RECOGNITION_REQUEST_CODE	= (TrOasisConstants.TYPE_ETC_NONE + 100);
+	public	static	final	int		MESSAGE_SENDING_REQUEST_CODE	= (VOICE_RECOGNITION_REQUEST_CODE + 100);
 
 	//음성 명령어 집합.
 	//private	static	final	String[]	CMD_LIST_CAR_FLOW				= { "소통정보", "소통 정보" };
@@ -87,6 +88,9 @@ public class HiWayQuickMsgActivity extends HiWayBasicActivity
 		super.onResume();
 	
 		//음성인식 모듈의 사용가능성 검사.
+		/*
+		 * Remove voice message Dr.KIM
+		 * 
 		if ( mCancelVoice == false )
 		{
 			if ( checkVoiceRecognition() == true )
@@ -101,7 +105,7 @@ public class HiWayQuickMsgActivity extends HiWayBasicActivity
 					Log.e( "HiWayQuickMsg", e.toString() );
 				}
 			};
-		}
+		}*/
 	}
 	
 	
@@ -375,7 +379,16 @@ public class HiWayQuickMsgActivity extends HiWayBasicActivity
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		if (requestCode != VOICE_RECOGNITION_REQUEST_CODE )	return;
+		if (requestCode == MESSAGE_SENDING_REQUEST_CODE) {
+			if ( resultCode == RESULT_OK )
+			{
+				finish();	
+				return;
+			}	
+		} else if (requestCode != VOICE_RECOGNITION_REQUEST_CODE ){
+			return;
+		}
+			
 		if ( resultCode != RESULT_OK )
 		{
 			mCancelVoice	= true;
@@ -511,7 +524,8 @@ public class HiWayQuickMsgActivity extends HiWayBasicActivity
 		super.onActivityResult(requestCode, resultCode, data);
 		
 		//음성인식모듈 재실행.
-		procStartVoiceRecognition();
+		//Remove Voice Message Dr.KIM 
+		//procStartVoiceRecognition();
 	}
 
 
@@ -524,9 +538,10 @@ public class HiWayQuickMsgActivity extends HiWayBasicActivity
 		//신규 메시지를 작성하는 Activity 화면으로 이동.
 		Intent	intentNext	= new Intent( this, HiWaySnsNewActivity.class );
 		intentNext.putExtra( TrOasisIntentParam.KEY_FOR_INTENT_PARAM, (Parcelable)mIntentParam );
-		startActivity( intentNext );
+		startActivityForResult(intentNext, MESSAGE_SENDING_REQUEST_CODE );
 	}
 
+	
 	//음성인식 모듈의 사용가능 여부 검사.
 	protected	boolean	checkVoiceRecognition()
 	{
@@ -592,7 +607,8 @@ public class HiWayQuickMsgActivity extends HiWayBasicActivity
 	 * Timer에 기반해서 음성인식 모듈 호출을 위해.
 	 */
 	//음성인식 모듈을 호출하는 객체.
-	class	AlarmTask	extends TimerTask
+	//Remove voice message Dr.KIM
+/*	class	AlarmTask1	extends TimerTask
 	{
 		private	int	mCount	= 0;
 		public	void	run()
@@ -608,7 +624,7 @@ public class HiWayQuickMsgActivity extends HiWayBasicActivity
 			mTimerVoiceCmd	= null;
 			mCount	= 0;
 		}
-	};
+	};*/
 }
 
 /*
