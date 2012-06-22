@@ -1,27 +1,37 @@
 package kr.co.ex.hiwaysnsclient.main;
 
-import kr.co.ex.hiwaysnsclient.lib.*;
-import kr.co.ex.hiwaysnsclient.map.*;
-import kr.co.ex.hiwaysnsclient.setup.*;
-import kr.co.ex.hiwaysnsclient.sns.*;
-import kr.co.ex.hiwaysnsclient.poi.*;
-import kr.co.ex.hiwaysnsclient.cctv.*;
+import java.util.ArrayList;
+import java.util.List;
 
+import kr.co.ex.hiwaysnsclient.cctv.HiWayCctvListActivity;
+import kr.co.ex.hiwaysnsclient.db.Message;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisConstants;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisIntentParam;
+import kr.co.ex.hiwaysnsclient.map.HiWayMapViewActivity;
+import kr.co.ex.hiwaysnsclient.poi.HiWayPoiListActivity;
+import kr.co.ex.hiwaysnsclient.setup.HiWaySetupActivity;
+import kr.co.ex.hiwaysnsclient.sns.HiWaySnsListActivity;
+import kr.co.ex.hiwaysnsclient.util.ExpandableListAdapter;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.os.Bundle;
-import android.os.Parcelable;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.view.View;
-import android.view.ViewGroup;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
+import android.widget.ExpandableListView.OnGroupClickListener;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class HiWayMainActivity extends HiWayBasicActivity
 {
@@ -48,6 +58,8 @@ public class HiWayMainActivity extends HiWayBasicActivity
 
 		//메인 화면의 Grid 설정.
 		setupMainGrid();
+		
+		loadMessage();
 	}
 
 
@@ -332,6 +344,97 @@ public class HiWayMainActivity extends HiWayBasicActivity
 			}
 	 	});
 		dlgAlert.show();
+	}
+	
+	private ExpandableListAdapter adapter;
+	List<Message> messages;
+
+	ExpandableListView listView;
+	
+	protected void loadMessage(){
+		
+		listView = (ExpandableListView) findViewById(R.id.listView);
+
+		listView.setOnChildClickListener(new OnChildClickListener() {
+
+			@Override
+			public boolean onChildClick(ExpandableListView arg0, View arg1,
+					int arg2, int arg3, long arg4) {
+				/*
+				 * Toast.makeText(getBaseContext(), "Child clicked",
+				 * Toast.LENGTH_LONG).show();
+				 */
+				//audioPlayer("");
+				return false;
+			}
+		});
+
+		listView.setOnGroupClickListener(new OnGroupClickListener() {
+
+			@Override
+			public boolean onGroupClick(ExpandableListView arg0, View arg1,
+					int arg2, long arg3) {
+				/*
+				 * Toast.makeText(getBaseContext(), "Group clicked",
+				 * Toast.LENGTH_LONG).show();
+				 */
+				TextView tv = (TextView) arg1.findViewById(R.id.tvGroup) ;
+				//audioPlayer(tv.getText().toString().trim());
+				return false;
+			}
+		});
+		loadData();
+		displayData();
+	}
+	
+	private void loadData() {
+		messages = new ArrayList<Message>();
+		Message message = new Message();
+		message.setId(1);
+		message.setContent("안녕하세요");
+		message.setTitle("업데이트 안내");
+		message.setCreatedDate("2012/05/26");
+		messages.add(message);
+		
+		message = new Message();
+		message.setId(2);
+		message.setTitle("고속도로카드 잔액 환불 받으세요");
+		message.setContent("-환불기한: 2015.3.31.24:00까지 환불가능 \n-환불금액: 사용하지 아니한 고속도로카드 잔액 \n" +
+				"-환불방법: 한국도로공사 통게이트 직접방운, 지역본부 우편접수 후 계좌입금");
+		message.setCreatedDate("2012/06/14");
+		messages.add(message);
+		/*
+		for(int i = 3; i<9; i++){
+			message = new Message();
+			message.setId(i);
+			message.setContent("This is content of message number " + i);
+			message.setTitle("Message " + i);
+			message.setCreatedDate("2012/06/14");
+			messages.add(message);
+		}*/
+	}
+
+	private void displayData() {
+		if (messages == null) {
+			
+			Toast.makeText(getBaseContext(), "List is empty",
+					Toast.LENGTH_SHORT).show();
+		} else {
+			
+			// Initialize the adapter with blank groups and children
+			// We will be adding children on a thread, and then update the
+			// ListView
+			adapter = new ExpandableListAdapter(this, new ArrayList<String>(),
+					new ArrayList<ArrayList<Message>>());
+
+			for (int i = 0; i < messages.size(); i++) {
+				adapter.addItem(messages.get(i));
+				adapter.notifyDataSetChanged();
+			}
+
+			// Set this blank adapter to the list view
+			listView.setAdapter(adapter);
+		}
 	}
 }
 
