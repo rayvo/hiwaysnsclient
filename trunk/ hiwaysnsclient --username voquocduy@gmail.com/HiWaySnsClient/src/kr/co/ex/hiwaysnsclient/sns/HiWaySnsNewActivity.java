@@ -2,12 +2,14 @@ package kr.co.ex.hiwaysnsclient.sns;
 
 import java.io.File;
 
-import com.google.android.maps.GeoPoint;
-
-import kr.co.ex.hiwaysnsclient.main.*;
-import kr.co.ex.hiwaysnsclient.lib.*;
-import kr.co.ex.hiwaysnsclient.map.*;
-
+import kr.co.ex.hiwaysnsclient.lib.AudioPlayer;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisConstants;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisIntentParam;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisLocation;
+import kr.co.ex.hiwaysnsclient.lib.VideoPlayer;
+import kr.co.ex.hiwaysnsclient.main.HiWayBasicActivity;
+import kr.co.ex.hiwaysnsclient.main.R;
+import kr.co.ex.hiwaysnsclient.map.HiWayMapViewActivity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -30,6 +32,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.VideoView;
+
+import com.google.android.maps.GeoPoint;
 
 public class HiWaySnsNewActivity extends HiWayBasicActivity
 {
@@ -201,7 +205,10 @@ public class HiWaySnsNewActivity extends HiWayBasicActivity
 				if ( dspCheckInput() )
 				{
 					//신규 메시지를 서버에 등록.
-					if ( procSendMsg2Server(mIntentParam.mParentID) )	finish();	//현재화면 종료.
+					if ( procSendMsg2Server(mIntentParam.mParentID) ) {	
+						setResult(RESULT_OK);
+						finish();	//현재화면 종료.
+					}
 				}
 			}
 		});
