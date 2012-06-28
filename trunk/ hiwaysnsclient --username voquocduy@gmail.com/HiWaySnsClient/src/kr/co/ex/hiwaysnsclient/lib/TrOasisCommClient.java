@@ -46,8 +46,8 @@ public class TrOasisCommClient
 //	public	static	final	String	SERVER_IP	= "211.56.151.87:8080";		//공인 서버 - 도공 - Original.
 	// public	static	final	String	SERVER_IP	= "112.216:8080";		//공인 서버 - 도공 - 신규.
 	
-	//TODO RayVo public	static	final	String	SERVER_IP	= "180.182.57.146:8080";		//공인 서버 - 도공 - 신규.
-	//TODO RayVO  public	static	final	String	SERVER_IP	= "2.2.14.103:8080";		//공인 서버 - 도공 - 신규.
+	
+	//TODO RayVO public	static	final	String	SERVER_IP	= "2.2.14.103:8080";		//공인 서버 - 도공 - 신규.
 	public	static	final	String	SERVER_IP	= "180.148.181.87:8080";		//공인 서버 - 도공 - 신규.
 	//public	static	final	String	SERVER_IP	= "dogong.hscdn.com:8080";		//공인 서버 - 효성 ITX.
 	//public static final String SERVER_IP="203.252.180.80:8080"; //Esther's IP
@@ -1759,6 +1759,90 @@ public class TrOasisCommClient
 		
 	}	
 
+	public List<TrOASISMessage> procMessage(String messageID) throws Exception {
+		//통신의 초기 오류조건 초기화.
+		resetCommStatus();
+		
+		List<TrOASISMessage> messageList = null;
+		
+		//서버와 데이터 통신 수행.
+		TrOasisCommClient	objCommClient	= new TrOasisCommClient();
+		TrOasisXmlProc		objXmlGen		= new TrOasisXmlProc();
+		try
+		{
+			/*
+			 * 서버에 Request 전달 및 Response 메시지 수신.
+			 */
+			//Request에 전달하는 XML 데이터 구성.
+			objXmlGen.startXML();
+			objXmlGen.startField( "troasis" );				
+			
+			objXmlGen.appendField( "active_id", mActiveID );
+			if ( HiWayMapViewActivity.mSvrStarted == true )
+				objXmlGen.appendField( "user_id", mUserID );
+			else
+				objXmlGen.appendField( "user_id", NICKNAME_GUEST );
+			
+			objXmlGen.appendField( "message_id", messageID);
+			objXmlGen.endField( "troasis" );
+			objXmlGen.endXML();
+			String	xmlInput	= objXmlGen.getXmlData();
+			
+			mStrResponse	= objCommClient.sendPost( TrOasisCommClient.WS_MESSAGE_REQUEST, xmlInput );
+
+			//서버에 Request 전달 및 Response 수신.
+			String[][]	listResponse	=	{
+					{ "status_code", "" },
+					{ "status_msg", "" },
+					{ "active_id", "" },
+					{ "message_count", "" } };
+			// 응답 메시지 파싱.
+			listResponse = objXmlGen.parseInputXML(mStrResponse, listResponse);
+			// for ( int i = 0; i < listResponse.length; i++ ) Log.i(
+			// "FTMS XML", listResponse[i][0] + " = " + listResponse[i][1] );
+
+			mStatusCode = cnvt2intStatus(listResponse[0][1]);
+			mStatusMsg = cnvt2string(listResponse[1][1]);
+			int messageCount = cnvt2int(listResponse[3][1]);
+
+			// mActiveID = "";
+
+			// VMS 교통정보 추출.
+			String[] messageKeyList = { "message_id", 
+										"title", 
+										"content", 
+										"created_date", 
+										"expired_date", };
+
+			// 응답 메시지 파싱.
+			List<String[]> messageListValue = objXmlGen.parseMemberXML(
+					mStrResponse, "message", messageKeyList);
+			// Log.e("[VMS INFO LIST]", "listVmsAgentValue.size()=" +
+			// listVmsAgentValue.size() );
+
+			if (messageCount > 0) {
+				messageList = new ArrayList<TrOASISMessage>();
+				for (int i = 0; i < messageCount; i++) {
+					TrOASISMessage objMessage = new TrOASISMessage();
+					if (messageListValue.get(i)[0] != null && !messageListValue.get(i)[0].equals("")) {
+						objMessage.setMessageId(cnvt2int(messageListValue.get(i)[0]));	
+					}					
+					objMessage.setTitle(cnvt2string(messageListValue.get(i)[1]));					
+					objMessage.setContent(cnvt2string(messageListValue.get(i)[2]));
+					objMessage.setCreatedDate(cnvt2string(messageListValue.get(i)[3]));
+					objMessage.setExpiredDate(cnvt2string(messageListValue.get(i)[4]));
+					messageList.add(objMessage);
+				}
+			}
+			return messageList;
+		} catch (Exception e) {
+			Log.e("[POLL]", e.toString());
+			mStatusCode = 2;
+			mStatusMsg = e.toString();
+			throw new Exception( e );
+		}
+	}
+	
 
 	/*
 	 * Implementation.
@@ -1853,7 +1937,10 @@ public class TrOasisCommClient
 	//서버 서비스에 접근하려는 URL 생성.
 	private	static	String	getServerUrl( String strWsName )
 	{
-		//String	strServerUrl	= "http://" + SERVER_IP + WS_NAME + strWsName;
+		/*//TODO Will be removed by RayVo
+		if (strWsName.compareToIgnoreCase("request_message.jsp") == 0) {
+			return "http://2.2.14.103:8080/HiWaySnsServer/web_service/request_message.jsp";
+		}*/
 		String	strServerUrl	= "http://" + mMyServer + ":8080" + WS_NAME + strWsName;
 		if ( mMyServer.length() < 1 )
 		{
@@ -1939,93 +2026,5 @@ public class TrOasisCommClient
 	{
 		if ( strValue == null || strValue.length() < 1 )	return "";
 		return( strValue );
-	}
-
-	public List<TrOASISMessage> procMessage(String messageID) throws Exception {
-		//통신의 초기 오류조건 초기화.
-		resetCommStatus();
-		
-		List<TrOASISMessage> messageList = null;
-		
-		//서버와 데이터 통신 수행.
-		TrOasisCommClient	objCommClient	= new TrOasisCommClient();
-		TrOasisXmlProc		objXmlGen		= new TrOasisXmlProc();
-		try
-		{
-			/*
-			 * 서버에 Request 전달 및 Response 메시지 수신.
-			 */
-			//Request에 전달하는 XML 데이터 구성.
-			objXmlGen.startXML();
-			objXmlGen.startField( "troasis" );				
-			
-			objXmlGen.appendField( "active_id", mActiveID );
-			if ( HiWayMapViewActivity.mSvrStarted == true )
-				objXmlGen.appendField( "user_id", mUserID );
-			else
-				objXmlGen.appendField( "user_id", NICKNAME_GUEST );
-			
-			objXmlGen.appendField( "message_id", messageID);
-			objXmlGen.endField( "troasis" );
-			objXmlGen.endXML();
-			String	xmlInput	= objXmlGen.getXmlData();
-			
-			mStrResponse	= objCommClient.sendPost( TrOasisCommClient.WS_MESSAGE_REQUEST, xmlInput );
-
-			//서버에 Request 전달 및 Response 수신.
-			String[][]	listResponse	=	{
-					{ "status_code", "" },
-					{ "status_msg", "" },
-					{ "active_id", "" },
-					{ "message_count", "" } };
-			// 응답 메시지 파싱.
-			listResponse = objXmlGen.parseInputXML(mStrResponse, listResponse);
-			// for ( int i = 0; i < listResponse.length; i++ ) Log.i(
-			// "FTMS XML", listResponse[i][0] + " = " + listResponse[i][1] );
-
-			mStatusCode = cnvt2intStatus(listResponse[0][1]);
-			mStatusMsg = cnvt2string(listResponse[1][1]);
-			int messageCount = cnvt2int(listResponse[3][1]);
-
-			// mActiveID = "";
-
-			// VMS 교통정보 추출.
-			String[] messageKeyList = { "message_id", 
-										"title", 
-										"content", 
-										"created_date", 
-										"is_popup", };
-
-			// 응답 메시지 파싱.
-			List<String[]> messageListValue = objXmlGen.parseMemberXML(
-					mStrResponse, "message", messageKeyList);
-			// Log.e("[VMS INFO LIST]", "listVmsAgentValue.size()=" +
-			// listVmsAgentValue.size() );
-
-			if (messageCount > 0) {
-				messageList = new ArrayList<TrOASISMessage>();
-				for (int i = 0; i < messageCount; i++) {
-					TrOASISMessage objMessage = new TrOASISMessage();
-					if (messageListValue.get(i)[0] != null && !messageListValue.get(i)[0].equals("")) {
-						objMessage.setMessageId(cnvt2int(messageListValue.get(i)[0]));	
-					}					
-					objMessage.setTitle(cnvt2string(messageListValue.get(i)[1]));					
-					objMessage.setContent(cnvt2string(messageListValue.get(i)[2]));
-					objMessage.setCreatedTime(cnvt2string(messageListValue.get(i)[3]));
-					if (messageListValue.get(i)[4] != null && !messageListValue.get(i)[4].equals("")) {
-						objMessage.setPopup(cnvt2int(messageListValue.get(i)[4]));	
-					}					
-					objMessage.setRead(0);
-
-					messageList.add(objMessage);
-				}
-			}
-			return messageList;
-		} catch (Exception e) {
-			Log.e("[POLL]", e.toString());
-			mStatusCode = 2;
-			mStatusMsg = e.toString();
-			throw new Exception( e );
-		}
 	}
 }
