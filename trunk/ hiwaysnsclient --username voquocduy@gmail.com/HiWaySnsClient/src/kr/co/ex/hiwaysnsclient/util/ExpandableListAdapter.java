@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import kr.co.ex.hiwaysnsclient.db.Message;
+import kr.co.ex.hiwaysnsclient.db.TrOASISMessage;
 import kr.co.ex.hiwaysnsclient.main.R;
 import android.content.Context;
 import android.graphics.Color;
@@ -30,13 +30,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	private Context context;
 
 	private ArrayList<String> groups;
+	private ArrayList<String> dates;
 
-	private ArrayList<ArrayList<Message>> children;
+	private ArrayList<ArrayList<TrOASISMessage>> children;
 
-	public ExpandableListAdapter(Context context, ArrayList<String> groups,
-			ArrayList<ArrayList<Message>> children) {
+	public ExpandableListAdapter(Context context, ArrayList<String> groups, ArrayList<String> dates,
+			ArrayList<ArrayList<TrOASISMessage>> children) {
 		this.context = context;
 		this.groups = groups;
+		this.dates = dates;
 		this.children = children;
 	}
 
@@ -49,15 +51,17 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	 * 
 	 * @param vehicle
 	 */
-	public void addItem(Message message) {
-		if (!groups.contains(message.getTitle())) {
+	public void addItem(TrOASISMessage message) {
+		//if (!groups.contains(message.getTitle())) {
 			groups.add(message.getTitle());
-		}
+		//}
 		int index = groups.indexOf(message.getTitle());
 		if (children.size() < index + 1) {
-			children.add(new ArrayList<Message>());
+			children.add(new ArrayList<TrOASISMessage>());
+			
 		}
 		children.get(index).add(message);
+		dates.add("[" + message.getCreatedDate().substring(0,10) + "]");
 	}
 
 	@Override
@@ -74,7 +78,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	@Override
 	public View getChildView(int groupPosition, int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
-		Message message = (Message) getChild(groupPosition, childPosition);
+		TrOASISMessage message = (TrOASISMessage) getChild(groupPosition, childPosition);
 		if (convertView == null) {
 			LayoutInflater infalInflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -96,104 +100,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		subLayout.addView(contentTV);
 		
 		dataLayout.addView(subLayout);
-		/*
-		if (message != null) {
-			
-			if (words != null) {
-				for (int i = 0; i < words.size(); i++) {
-					Word word = words.get(i);
-
-					Type type = word.getType();
-					if (type != null) { // in case of no type
-						String curType = type.getType();
-						if (!typeFlag.equals(curType)) {
-							LinearLayout subLayout = new LinearLayout(context);
-
-							curType = type.getType();
-							TextView typeTextView = new TextView(context);
-							typeTextView.setText(curType + "\t");
-							typeTextView.setTextSize(20);
-							typeTextView.setTextColor(Color.GREEN);
-							subLayout.addView(typeTextView);
-
-							Typeface myTypeface = Typeface.createFromAsset(
-									context.getAssets(), "lsansuni.ttf");
-							TextView pronounceTextView = new TextView(context);
-							pronounceTextView.setTypeface(myTypeface);
-							pronounceTextView.setText(word.getPronounce()
-									.replace("''", "'"));
-							pronounceTextView.setTextColor(Color.BLUE);
-							pronounceTextView.setTextSize(20);
-							if (proFlag) {
-								subLayout.addView(pronounceTextView);
-
-								
-								boolean blnSoundExist = false;
-
-								
-									blnSoundExist = audioPlayer(false,
-											message.getBaseWord());
-								
-
-								if (blnSoundExist) {
-									ImageButton btnPronounce = new ImageButton(
-											context);
-									btnPronounce
-											.setBackgroundResource(R.drawable.speaker);
-									btnPronounce.setPadding(50, 20, 0, 0);
-									btnPronounce.setTag(message.getBaseWord());
-									btnPronounce
-											.setOnClickListener(new OnClickListener() {
-
-												@Override
-												public void onClick(View v) {
-													String word = (String) v
-															.getTag();
-													audioPlayer(true,
-															word.trim());
-												}
-											});
-									subLayout.addView(btnPronounce);
-								}
-								proFlag= false;
-							}
-							dataLayout.addView(subLayout);
-						}
-						typeFlag = curType;
-					}
-
-					List<Meaning> meanings = word.getMeanings();
-					int count = i + 1;
-					for (int j = 0; j < meanings.size(); j++) {
-						Meaning meaning = meanings.get(j);
-						TextView meaningView = new TextView(context);
-						meaningView.setTextSize(20);
-						meaningView.setTextColor(Color.CYAN);
-						meaningView
-								.setText(count + ") " + meaning.getMeaning());
-						meaningView.setPadding(15, 0, 0, 0);
-						dataLayout.addView(meaningView);
-
-						List<Example> examples = meaning.getExamples();
-						if (examples != null) {
-							String tmp = "";
-							for (int k = 0; k < examples.size(); k++) {
-								Example example = examples.get(k);
-								// Display example
-								tmp = tmp + "-" + example.getExample() + "\n";
-							}
-							TextView examplesTextView = new TextView(context);
-							examplesTextView.setText(tmp);
-							examplesTextView.setTextColor(Color.LTGRAY);
-							examplesTextView.setTypeface(null, Typeface.ITALIC);
-							examplesTextView.setTextSize(20);
-							examplesTextView.setPadding(20, 0, 0, 0);
-							dataLayout.addView(examplesTextView);
-						}
-					}
-				}
-			}
-		}*/
+		
 		return convertView;
 	}
 
@@ -229,6 +136,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		}
 		TextView tv = (TextView) convertView.findViewById(R.id.tvGroup);
 		tv.setText(group);
+		
+		
+		TextView tvDate = (TextView) convertView.findViewById(R.id.tvDate);
+		tvDate.setText(dates.get(groupPosition));
+		
+		
 		return convertView;
 	}
 
