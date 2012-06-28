@@ -16,7 +16,7 @@ public class MessageCursor extends SQLiteCursor {
 	//CREATE TABLE message (id INTEGER PRIMARY KEY AUTOINCREMENT, message_id INTEGER, title TEXT, content TEXT, created_date TEXT, is_popup INT, is_read INT);
 	/** The query for this cursor */
 	private static final String QUERY = 
-		"SELECT id, message_id, title, content,  created_date, is_popup, is_read " +
+		"SELECT id, message_id, title, content,  created_date, expired_date " +
 		"FROM message ";		
 
 	public static String getQuery() {
@@ -37,7 +37,7 @@ public class MessageCursor extends SQLiteCursor {
 	public String getColTitle(){return getString(getColumnIndexOrThrow("title"));}
 	public String getColContent(){return getString(getColumnIndexOrThrow("content"));}
 	public String getColCreatedDate(){return getString(getColumnIndexOrThrow("created_date"));}
-	public int getColIsPopup(){return getInt(getColumnIndexOrThrow("is_popup"));}	
-	public int getColIsRead(){return getInt(getColumnIndexOrThrow("is_read"));}
+	public String getColExpiredDate(){return getString(getColumnIndexOrThrow("expired_date"));}
+	
 
 }

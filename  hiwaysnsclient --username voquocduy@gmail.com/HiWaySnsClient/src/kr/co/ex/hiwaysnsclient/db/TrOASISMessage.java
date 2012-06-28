@@ -2,55 +2,62 @@ package kr.co.ex.hiwaysnsclient.db;
 
 
 public class TrOASISMessage {
-	private int id;
-	private int messageId;
+	private long id;
+	private long messageId;	
 	private String title;
-	private String content;
-	private String createdTime;
-	private int isPopup;
-	private int isRead;
-	public int getId() {
+	private String content;	
+	private String createdDate;
+	private String expiredDate;
+		
+	public TrOASISMessage() {
+	}
+
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+
+	public void setId(long id) {
 		this.id = id;
 	}
-	public int getMessageId() {
+
+	public long getMessageId() {
 		return messageId;
 	}
-	public void setMessageId(int messageId) {
+
+	public void setMessageId(long messageId) {
 		this.messageId = messageId;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getContent() {
 		return content;
 	}
+
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getCreatedTime() {
-		return createdTime;
+
+	public String getCreatedDate() {
+		return createdDate;
 	}
-	public void setCreatedTime(String createdTime) {
-		this.createdTime = createdTime;
+
+	public void setCreatedDate(String createdDate) {
+		this.createdDate = createdDate;
 	}
-	public int isPopup() {
-		return isPopup;
+
+	public String getExpiredDate() {
+		return expiredDate;
 	}
-	public void setPopup(int isPopup) {
-		this.isPopup = isPopup;
+
+	public void setExpiredDate(String expiredDate) {
+		this.expiredDate = expiredDate;
 	}
-	public int isRead() {
-		return isRead;
-	}
-	public void setRead(int isRead) {
-		this.isRead = isRead;
-	}
-	
-	
+
 }
