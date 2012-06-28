@@ -381,8 +381,8 @@ public class HiWayMapViewActivity extends HiWayBasicMapActivity
 		}
 	}
 	
-/*	TODO RayVo
- * protected void recvMessage() {
+//	TODO RayVo
+   protected void recvMessage() {
 		mCountMessageComm++;
 		if ((mCountMessageComm % COUNT_MESSAGE_COMM) != 1) {
 			return;
@@ -401,7 +401,7 @@ public class HiWayMapViewActivity extends HiWayBasicMapActivity
 			Log.e("[MESSAGE ACCESS]", e.toString());
 
 		}
-	}*/
+	}
 	/*********************************************FOR SCROLLING MESSAGES*************************************************/
 	private LinearLayout verticalOuterLayout;
 	private ScrollView verticalScrollview;
@@ -682,14 +682,19 @@ public class HiWayMapViewActivity extends HiWayBasicMapActivity
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 
+		
+		/*Removed by RayVo
 		MenuItem item_option = menu.add(0, MENU_OPTION, Menu.NONE,
 				R.string.option_name);
 		// item_option.setIcon();
 		MenuItem item_dest = menu.add(0, MENU_DESTINATION, Menu.NONE,
 				R.string.destination_name);
 		// item_dest.setIcon();
-
-		return true;
+		*/
+		moveToMainMenu();
+		
+		
+		return false;
 	}
 
 	@Override
