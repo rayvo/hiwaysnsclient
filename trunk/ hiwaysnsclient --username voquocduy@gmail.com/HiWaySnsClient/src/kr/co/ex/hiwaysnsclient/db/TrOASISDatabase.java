@@ -265,9 +265,10 @@ public class TrOASISDatabase extends SQLiteOpenHelper {
 		try {
 			d = getReadableDatabase();
 			d.beginTransaction();
-			String sql = MessageCursor.getQuery();
-			sql = sql + " WHERE is_popup = 1 AND is_read = 0";
-			sql = sql + " ORDER BY message_id ";
+			String sql = MessageCursor.getQuery();			
+			sql = sql + " ORDER BY message_id DESC ";
+			sql = sql + " LIMIT 2 ";
+			
 			c = (MessageCursor) d.rawQueryWithFactory(
 					new MessageCursor.Factory(), sql, null, null);
 			if (c != null && c.getCount() > 0) {
@@ -280,9 +281,9 @@ public class TrOASISDatabase extends SQLiteOpenHelper {
 					message.setMessageId(c.getColMessageId());
 					message.setTitle(c.getColTitle());
 					message.setContent(c.getColContent());
-					message.setCreatedTime(c.getColCreatedDate());
-					message.setRead(c.getColIsRead());
-					message.setPopup(c.getColIsPopup());
+					message.setCreatedDate(c.getColCreatedDate());
+					message.setExpiredDate(c.getColExpiredDate());
+					
 					messageList.add(message);
 					c.moveToNext();
 				}
@@ -325,9 +326,9 @@ public class TrOASISDatabase extends SQLiteOpenHelper {
 					message.setMessageId(c.getColMessageId());
 					message.setTitle(c.getColTitle());
 					message.setContent(c.getColContent());
-					message.setCreatedTime(c.getColCreatedDate());
-					message.setRead(c.getColIsRead());
-					message.setPopup(c.getColIsPopup());
+					message.setCreatedDate(c.getColCreatedDate());
+					message.setExpiredDate(c.getColExpiredDate());
+					
 					messageList.add(message);
 					c.moveToNext();
 				}
@@ -373,9 +374,8 @@ public class TrOASISDatabase extends SQLiteOpenHelper {
 				cvMessage.put("message_id", message.getMessageId());
 				cvMessage.put("title", message.getTitle());
 				cvMessage.put("content", message.getContent());
-				cvMessage.put("created_date", message.getCreatedTime());
-				cvMessage.put("is_popup", message.isPopup());
-				cvMessage.put("is_read", message.isRead());
+				cvMessage.put("created_date", message.getCreatedDate());
+				cvMessage.put("expired_date", message.getExpiredDate());				
 
 				if (db == null) {
 					db = getWritableDatabase();
