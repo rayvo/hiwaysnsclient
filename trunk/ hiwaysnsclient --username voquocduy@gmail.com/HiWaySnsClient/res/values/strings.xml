@@ -98,7 +98,7 @@
 		DROP TABLE IF EXISTS cctv_modification_log;		
 		DROP TABLE IF EXISTS message;
 
-		CREATE TABLE message (id INTEGER PRIMARY KEY AUTOINCREMENT, message_id INTEGER, title TEXT, content TEXT, created_date TEXT, is_popup INT, is_read INT);
+		CREATE TABLE message (id INTEGER PRIMARY KEY AUTOINCREMENT, message_id INTEGER, title TEXT, content TEXT, created_date TEXT, expired_date TEXT);
 		
 		CREATE TABLE cctv (id INTEGER PRIMARY KEY AUTOINCREMENT, cctv_id TEXT, road_no INTEGER, location TEXT, cctv_lng REAL, cctv_lat REAL, url TEXT, address TEXT); 
 		CREATE TABLE cctv_modification_log(id INTEGER PRIMARY KEY AUTOINCREMENT,  number INT, cctv_id TEXT, type INTEGER, updated_date TEXT, FOREIGN KEY(cctv_id) REFERENCES cctv(cctv_id));

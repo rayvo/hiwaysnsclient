@@ -3,15 +3,15 @@
 	android:layout_width="fill_parent" android:layout_height="45dip"
 	android:background="#F4F4F4" xmlns:android="http://schemas.android.com/apk/res/android">
 	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-		android:layout_width="fill_parent" android:layout_height="fill_parent"
+		android:layout_width="fill_parent" android:layout_height="9mm"
 		android:stretchColumns="1">
 		<TableRow>
 			<TextView android:id="@+id/tvGroup" android:layout_width="wrap_content"
 				android:layout_height="40dip" android:text="Groups" android:gravity="center_vertical|left"
 				android:paddingLeft="60px" android:textColor="@color/color_black"
-				android:textStyle="bold" android:textSize="20px">
+				android:textSize="23px">
 			</TextView>
-			<TextView android:text="[2012/06/14]" android:textSize="14px"
+			<TextView android:id="@+id/tvDate" android:textSize="16px"
 				android:gravity="right" android:padding="3dip" />
 		</TableRow>
 	</TableLayout>
