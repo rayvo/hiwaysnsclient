@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.ex.hiwaysnsclient.cctv.HiWayCctvListActivity;
-import kr.co.ex.hiwaysnsclient.db.Message;
+import kr.co.ex.hiwaysnsclient.db.TrOASISDatabase;
+import kr.co.ex.hiwaysnsclient.db.TrOASISMessage;
 import kr.co.ex.hiwaysnsclient.lib.TrOasisConstants;
 import kr.co.ex.hiwaysnsclient.lib.TrOasisIntentParam;
 import kr.co.ex.hiwaysnsclient.map.HiWayMapViewActivity;
@@ -20,6 +21,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -347,9 +349,10 @@ public class HiWayMainActivity extends HiWayBasicActivity
 	}
 	
 	private ExpandableListAdapter adapter;
-	List<Message> messages;
+	List<TrOASISMessage> messages;
 
 	ExpandableListView listView;
+	private TrOASISDatabase db;
 	
 	protected void loadMessage(){
 		
@@ -383,38 +386,32 @@ public class HiWayMainActivity extends HiWayBasicActivity
 				return false;
 			}
 		});
-		loadData();
-		displayData();
+		db = new TrOASISDatabase(this);
+		recvMessage();		
+		
 	}
 	
-	private void loadData() {
-		messages = new ArrayList<Message>();
-		Message message = new Message();
-		message.setId(1);
-		message.setContent("안녕하세요");
-		message.setTitle("업데이트 안내");
-		message.setCreatedDate("2012/05/26");
-		messages.add(message);
-		
-		message = new Message();
-		message.setId(2);
-		message.setTitle("고속도로카드 잔액 환불 받으세요");
-		message.setContent("-환불기한: 2015.3.31.24:00까지 환불가능 \n-환불금액: 사용하지 아니한 고속도로카드 잔액 \n" +
-				"-환불방법: 한국도로공사 통게이트 직접방운, 지역본부 우편접수 후 계좌입금");
-		message.setCreatedDate("2012/06/14");
-		messages.add(message);
-		/*
-		for(int i = 3; i<9; i++){
-			message = new Message();
-			message.setId(i);
-			message.setContent("This is content of message number " + i);
-			message.setTitle("Message " + i);
-			message.setCreatedDate("2012/06/14");
-			messages.add(message);
-		}*/
-	}
+	protected void recvMessage() {
+
+		try {
+			String latestMSGId = db.getLatestMSGId();
+			List<TrOASISMessage> messageList = mTrOasisClient.procMessage(latestMSGId);
+			if (mTrOasisClient.mStatusCode == 0) {
+				if (messageList != null) {
+					db.storeMessage(messageList);					
+				}
+			}
+			
+			displayData();
+			
+		} catch (Exception e) {
+			Log.e("[MESSAGE ACCESS]", e.toString());
+
+		}
+	}	
 
 	private void displayData() {
+		messages =	db.getActiveMessages();
 		if (messages == null) {
 			
 			Toast.makeText(getBaseContext(), "List is empty",
@@ -424,8 +421,8 @@ public class HiWayMainActivity extends HiWayBasicActivity
 			// Initialize the adapter with blank groups and children
 			// We will be adding children on a thread, and then update the
 			// ListView
-			adapter = new ExpandableListAdapter(this, new ArrayList<String>(),
-					new ArrayList<ArrayList<Message>>());
+			adapter = new ExpandableListAdapter(this, new ArrayList<String>(), new ArrayList<String>(),
+					new ArrayList<ArrayList<TrOASISMessage>>());
 
 			for (int i = 0; i < messages.size(); i++) {
 				adapter.addItem(messages.get(i));
@@ -435,7 +432,8 @@ public class HiWayMainActivity extends HiWayBasicActivity
 			// Set this blank adapter to the list view
 			listView.setAdapter(adapter);
 		}
-	}
+	}	
+	
 }
 
 /*
