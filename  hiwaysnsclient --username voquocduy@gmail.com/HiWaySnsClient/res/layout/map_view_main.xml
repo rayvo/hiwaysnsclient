@@ -60,17 +60,23 @@
 			<RelativeLayout android:id="@+id/id_map_parent"
 				android:layout_alignParentBottom="true" android:layout_width="fill_parent"
 				android:layout_height="wrap_content">
-
-				<!-- <com.google.android.maps.MapView android:id="@+id/id_map" android:layout_width="fill_parent" 
+				<!--
+				 <com.google.android.maps.MapView android:id="@+id/id_map" android:layout_width="fill_parent" 
 					android:layout_height="fill_parent" android:enabled="true" android:clickable="true" 
 					android:apiKey="0KzoLReZ_O67rXeAWyL5ef1mZTuh1nsEzHlfOZA" //MSI 노트북. android:apiKey="0KzoLReZ_O65lA6-4HBoyhs0uRf9et6aGXZFnvQ" 
 					//MacBook Pro. android:apiKey="0kACDo3ev28mztTjGkEOSdpJhvXl9Z6O2goHmRw" //Private 
 					API Key. /> -->
 					
-					 <com.google.android.maps.MapView
+					
+					<com.google.android.maps.MapView
 						android:id="@+id/id_map" android:layout_width="fill_parent"
 						android:layout_height="fill_parent" android:enabled="true"
-						android:clickable="true" android:apiKey="0-yXa96XnxfesU5_RcspNFikzlV4eOQebbT964g" /> 
+						android:clickable="true" android:apiKey="0kACDo3ev28mztTjGkEOSdpJhvXl9Z6O2goHmRw" />
+						
+					 <!-- <com.google.android.maps.MapView
+						android:id="@+id/id_map" android:layout_width="fill_parent"
+						android:layout_height="fill_parent" android:enabled="true"
+						android:clickable="true" android:apiKey="0-yXa96XnxfesU5_RcspNFikzlV4eOQebbT964g" /> -->
 
 				<!-- <LinearLayout android:layout_width="wrap_content"
 					android:layout_height="wrap_content" android:id="@+id/id_linear_map" 
