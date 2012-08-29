@@ -281,7 +281,9 @@ public class TrOASISDatabase extends SQLiteOpenHelper {
 					message.setMessageId(c.getColMessageId());
 					message.setTitle(c.getColTitle());
 					message.setContent(c.getColContent());
-					message.setCreatedDate(c.getColCreatedDate());
+					String createDate = c.getColCreatedDate();
+					createDate = createDate.substring(0,11);
+					message.setCreatedDate(createDate);
 					message.setExpiredDate(c.getColExpiredDate());
 					
 					messageList.add(message);
