@@ -400,7 +400,10 @@ public class ViewerCctvActivity extends HiWayBasicActivity
 			meditCtrl.setAnchorView(mVideoView); 
 			mVideoView.setMediaController( meditCtrl );
 			//mMessage.mMsgLinkEtc	= mMessage.mMsgLinkEtc.replace("rtsp://exmobile.hscdn.com:554/exvod/mp4://", "http://exmobile.hscdn.com:8080/");
-			mVideoView.setVideoURI( Uri.parse(mMessage.mMsgLinkEtc) );
+			mVideoView.setVideoURI( Uri.parse(mMessage.mMsgLinkEtc.trim()) );
+			//mVideoView.setVideoURI( Uri.parse("http://cctvsec.ktict.co.kr/4208/7RLlRYDXZ762hAFZs6AVF6fJai+wYZJ2nLt+Dn7ncUPRxpgwAWlWC0FSnVHVVHxc") );
+			
+
 			//mVideoView.setVideoURI( Uri.parse("http://cctv.ktict.co.kr/con.php?co=3268&id=4001") );
 			//Log.e("[URI]", "mMessage.mMsgLinkEtc=" + mMessage.mMsgLinkEtc);
 			mVideoView.requestFocus();
@@ -603,7 +606,8 @@ public class ViewerCctvActivity extends HiWayBasicActivity
 				}
 			} else {
 				objMsg.mMsgEtcType		= TrOasisConstants.TYPE_ETC_MOTION;
-				strUrl = strNationalURL;
+				mTrOasisClient.procCctvUrl(strCctvID);
+				strUrl = mTrOasisClient.mCctvUrl;
 			}
 			objMsg.mMsgLinkEtc	= strUrl;
 				//Log.e("111", "strUrl=" + strUrl);			
