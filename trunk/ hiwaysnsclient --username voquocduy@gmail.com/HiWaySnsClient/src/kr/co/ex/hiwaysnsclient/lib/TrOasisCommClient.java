@@ -71,6 +71,7 @@ public class TrOasisCommClient
 	private	static	final	String	WS_USER_TRAFFIC_LIST	= "user_traffic_list.jsp";
 	private	static	final	String	WS_CCTV_LIST			= "cctv_list.jsp";
 	private	static	final	String	WS_CCTV_URL				= "cctv_url.jsp";
+	private	static	final	String	WS_NATIONAL_CCTV_URL				= "national_cctv_url.jsp";
 	
 	private	static	final	String	WS_MSG_LIST				= "msg_list.jsp";
 	private	static	final	String	WS_MSG_NEW				= "msg_new.jsp";
@@ -130,6 +131,9 @@ public class TrOasisCommClient
 	public	long	mCctvTimestamp	= 0;			//CCTV URL 정보가 갱신된 최종시각.
 	public	String	mUrlMotion		= "";			//안드로이드 단말기용 동영상 URL.
 	public	String	mUrlImage		= "";			//정지영상 URL.
+	
+	public String mCctvUrl = "";
+	public int mCctvStatus = 0;
 	
 	public long mVersionCode = 0;
 	public String mVersionName = "";	
@@ -752,6 +756,75 @@ public class TrOasisCommClient
 		} 
 	}
 
+	//National CCTV URL 정보 수신.
+	public	void	procNationalCctvUrl( String strCctvID ) throws Exception
+	{
+		//통신의 초기 오류조건 초기화.
+		resetCommStatus();
+		
+		//서버와 데이터 통신 수행.
+		TrOasisCommClient	objCommClient	= new TrOasisCommClient();
+		TrOasisXmlProc		objXmlGen		= new TrOasisXmlProc();
+		try
+		{
+			/*
+			 * 서버에 Request 전달 및 Response 메시지 수신.
+			 */
+			//Request에 전달하는 XML 데이터 구성.
+			objXmlGen.startXML();
+			objXmlGen.startField( "troasis" );
+						
+			objXmlGen.appendField( "active_id", mActiveID );
+			if ( HiWayMapViewActivity.mSvrStarted == true )
+				objXmlGen.appendField( "user_id", mUserID );
+			else
+				objXmlGen.appendField( "user_id", NICKNAME_GUEST );
+			objXmlGen.appendField( "cctv_id", strCctvID );
+
+			objXmlGen.endField( "troasis" );
+			objXmlGen.endXML();
+			String	xmlInput	= objXmlGen.getXmlData();
+			
+			//서버에 Request 전달 및 Response 수신.
+			mStrResponse	= objCommClient.sendPost( TrOasisCommClient.WS_NATIONAL_CCTV_URL, xmlInput );
+			//Log.e("response", mStrResponse);
+			
+			
+			/*
+			 * 서버로부터 수신한 응답 메시지 파싱.
+			 */
+			//응답 메시지 필드목록.
+			String[][]	listResponse	=	{
+												{ "status_code", "" },
+												{ "status_msg", "" },
+												{ "active_id", "" },
+												{ "cctv_id", "" },
+												{ "cctv_url", "" },
+												{ "cctv_status", "" },												
+											};
+			//응답 메시지 파싱.
+			listResponse	= objXmlGen.parseInputXML( mStrResponse, listResponse );
+			//for ( int i = 0; i < listResponse.length; i++ )	Log.i( "XML", listResponse[i][0] + "=" + listResponse[i][1] +"." );
+	
+			mStatusCode	= cnvt2intStatus( listResponse[0][1] );
+			mStatusMsg	= cnvt2string( listResponse[1][1] );
+			
+			if ( mStatusCode == 0 )
+			{
+				///* 실제 모듈.
+				mCctvUrl	= cnvt2string( listResponse[4][1] );
+				mCctvStatus		= cnvt2int( listResponse[5][1] );				
+			}
+		}
+		catch( Exception e)
+		{ 
+			Log.e( "[CCTV LIST]", e.toString() );
+			mStatusCode	= 2;
+			mStatusMsg	= e.toString();
+			throw new Exception(e);
+		} 
+	}
+	
 	//CCTV URL 정보 수신.
 	public	void	procCctvUrl( String strCctvID ) throws Exception
 	{
@@ -1937,10 +2010,12 @@ public class TrOasisCommClient
 	//서버 서비스에 접근하려는 URL 생성.
 	private	static	String	getServerUrl( String strWsName )
 	{
-		/*//TODO Will be removed by RayVo
-		if (strWsName.compareToIgnoreCase("request_message.jsp") == 0) {
-			return "http://2.2.14.103:8080/HiWaySnsServer/web_service/request_message.jsp";
-		}*/
+		/*TODO Will be removed by RayVo
+		
+		if (strWsName.compareToIgnoreCase("national_cctv_url.jsp") == 0) {
+			return "http://2.2.14.103:8080/HiWaySnsServer/web_service/national_cctv_url.jsp";
+		}
+		*/
 		String	strServerUrl	= "http://" + mMyServer + ":8080" + WS_NAME + strWsName;
 		if ( mMyServer.length() < 1 )
 		{
