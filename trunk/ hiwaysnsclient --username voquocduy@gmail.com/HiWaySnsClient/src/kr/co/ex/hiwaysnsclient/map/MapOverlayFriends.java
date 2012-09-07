@@ -1417,10 +1417,18 @@ public class MapOverlayFriends extends Overlay
 					}
 				}
 			} else {
-				objMsg.mMsgEtcType		= TrOasisConstants.TYPE_ETC_MOTION;				
-				strUrl = strNationalURL;				
+				mParent.mTrOasisClient.procNationalCctvUrl(strCctvID);
+				if ( mParent.mTrOasisClient.mStatusCode != 0 ) {
+					strUrl	= "";	//서버와의 통신 실패를 알려주는 메시지 출력.
+				}
+				else
+				{
+					objMsg.mMsgEtcType		= TrOasisConstants.TYPE_ETC_MOTION;
+					strUrl = mParent.mTrOasisClient.mCctvUrl;
+				}							
 			}
-			objMsg.mMsgLinkEtc	= strUrl;			
+			objMsg.mMsgLinkEtc	= strUrl;
+
 		}
 		catch( Exception e)
 		{ 
