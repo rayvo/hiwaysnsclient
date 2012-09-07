@@ -1423,8 +1423,12 @@ public class MapOverlayFriends extends Overlay
 				}
 				else
 				{
-					objMsg.mMsgEtcType		= TrOasisConstants.TYPE_ETC_MOTION;
-					strUrl = mParent.mTrOasisClient.mCctvUrl;
+					if (mParent.mTrOasisClient.mCctvStatus == 1){
+						objMsg.mMsgEtcType		= TrOasisConstants.TYPE_ETC_MOTION;
+						strUrl = mParent.mTrOasisClient.mCctvUrl;
+					} else {
+						strUrl = "";
+					}
 				}							
 			}
 			objMsg.mMsgLinkEtc	= strUrl;
