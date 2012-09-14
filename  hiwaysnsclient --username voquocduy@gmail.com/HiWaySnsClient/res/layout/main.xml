@@ -45,11 +45,7 @@
 						android:layout_height="wrap_content" android:orientation="horizontal"
 						android:layout_centerVertical="true" android:layout_marginRight="5dip">
 					</LinearLayout>
-
-
-
-
-				</RelativeLayout>
+			</RelativeLayout>
 
 			</FrameLayout>
 
@@ -61,34 +57,62 @@
 				android:columnWidth="80dp" android:stretchMode="columnWidth"
 				android:gravity="center" android:scrollbars="vertical"></GridView>
 
-			<LinearLayout android:layout_width="45mm" android:background="#C7C7C7"
-				android:layout_height="6mm" android:gravity="center_horizontal" android:layout_gravity="center_horizontal"
+			<LinearLayout android:layout_width="45mm"
+				android:background="#C7C7C7" android:layout_height="6mm"
+				android:gravity="center_horizontal" android:layout_gravity="center_horizontal"
 				android:layout_marginLeft="10px" android:layout_marginRight="10px">
-				<LinearLayout android:layout_width="fill_parent" android:background="@drawable/footer_bkgnd"
-					android:layout_height="fill_parent" android:gravity="center_horizontal"
-					android:layout_marginBottom="2px" android:layout_marginTop="2px" android:layout_marginLeft="2px"
+				<LinearLayout android:layout_width="fill_parent"
+					android:background="@drawable/footer_bkgnd" android:layout_height="fill_parent"
+					android:gravity="center_horizontal" android:layout_marginBottom="2px"
+					android:layout_marginTop="2px" android:layout_marginLeft="2px"
 					android:layout_marginRight="2px">
-						<TextView android:layout_height="wrap_content"
-							android:layout_width="fill_parent" android:gravity="center_horizontal"
-							android:layout_marginLeft="5px" android:text="공지사항"
-							android:textSize="20dip" android:textColor="#F0F0F0">
-						</TextView>
+					<TextView android:layout_height="wrap_content"
+						android:layout_width="fill_parent" android:gravity="left"
+						android:layout_marginLeft="10px" android:text="공지사항"
+						android:textSize="20dip" android:textColor="#F0F0F0">
+					</TextView>
 				</LinearLayout>
 			</LinearLayout>
 			<LinearLayout android:background="#C7C7C7"
 				android:layout_width="45mm" android:layout_height="18mm"
-				android:gravity="center_horizontal"  android:layout_gravity="center_horizontal" android:layout_marginBottom="80px"
-				android:layout_marginLeft="10px" android:layout_marginRight="10px">
+				android:gravity="center_horizontal" android:layout_gravity="center_horizontal"
+				android:layout_marginBottom="80px" android:layout_marginLeft="10px"
+				android:layout_marginRight="10px">
 				<LinearLayout android:background="#E8E8E8"
 					android:layout_width="fill_parent" android:layout_height="wrap_content"
 					android:gravity="center_horizontal" android:layout_marginBottom="2px"
 					android:layout_marginTop="0px" android:layout_marginLeft="2px"
 					android:layout_marginRight="2px">
-					<ExpandableListView android:id="@+id/listView"
-						android:layout_width="fill_parent" android:layout_height="fill_parent"
-						android:scrollbars="none">
-					</ExpandableListView>
+					<TableLayout android:layout_width="fill_parent" 
+						android:layout_height="fill_parent">
+						<TableRow android:id="@+id/firstMsg" android:layout_gravity="center_vertical" android:gravity="center_vertical" >
+							<TextView android:id="@+id/firstMsgTitle" android:layout_height="8.95mm"
+								android:layout_marginLeft="3dip" android:layout_gravity="center_vertical" android:gravity="center_vertical"
+								android:layout_width="34mm" android:text=""
+								android:textColor="@color/color_label"></TextView>
+							<TextView android:id="@+id/firstDate"
+								android:layout_height="wrap_content" android:layout_width="10mm" android:visibility="visible"
+								android:text="" android:textSize="15px"
+								android:textColor="@color/color_label"></TextView>							
+						</TableRow>
+						<TableRow android:layout_width="fill_parent" >
+							<TextView android:id="@+id/firstMsgTitle" android:layout_height="0.2mm" android:layout_width="fill_parent" android:layout_span="2"
+								android:background="#C7C7C7"></TextView>
+						</TableRow>
+						<TableRow android:id="@+id/secondMsg" android:layout_gravity="center_vertical" android:gravity="center_vertical" android:layout_marginTop="2px" >
+							<TextView android:id="@+id/secondMsgTitle" android:layout_height="8.95mm"
+								android:layout_marginLeft="3dip" android:layout_gravity="center_vertical" android:gravity="center_vertical"
+								android:layout_width="34mm" android:text=""
+								android:textColor="@color/color_label"></TextView>
+							<TextView android:id="@+id/secondDate"
+								android:layout_height="wrap_content" android:layout_width="10mm"
+								android:text="" android:textSize="15px"
+								android:textColor="@color/color_label"></TextView>
+						</TableRow>						
+					</TableLayout>
 				</LinearLayout>
+
+
 			</LinearLayout>
 		</LinearLayout>
 
