@@ -1,10 +1,12 @@
 package kr.co.ex.hiwaysnsclient.setup;
 
-import kr.co.ex.hiwaysnsclient.main.*;
-import kr.co.ex.hiwaysnsclient.lib.*;
-import kr.co.ex.hiwaysnsclient.map.*;
-
+import kr.co.ex.hiwaysnsclient.lib.TrOasisConstants;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisIntentParam;
+import kr.co.ex.hiwaysnsclient.main.R;
+import kr.co.ex.hiwaysnsclient.map.HiWayMapViewActivity;
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,13 +14,14 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.AdapterView.OnItemSelectedListener;
-import	android.content.Intent;
-import android.content.SharedPreferences;
 
 public class HiWaySetupActivity extends Activity
 {
@@ -118,20 +121,21 @@ public class HiWaySetupActivity extends Activity
 		{ "관광", String.valueOf(1) },
 		{ "귀성", String.valueOf(2) },
 		{ "업무", String.valueOf(3) },
-		{ "데이트", String.valueOf(4) },
-		{ "가족여행", String.valueOf(5) }
+		{ "데이트", String.valueOf(4) }
 	};
 
 	public static	final	String[][] mListStyle = {
-		{ "알뜰운전", String.valueOf(0) },
+		{ "스피드매니아", String.valueOf(0) },
+		{ "알뜰운전", String.valueOf(1) },
+		{ "안전운전", String.valueOf(2) },
 	};
 
 	public static	final	String[][] mListLevel = {
 		{ "미정", String.valueOf(0) },
 		{ "초급", String.valueOf(1) },
 		{ "중급", String.valueOf(2) },
-		{ "상급", String.valueOf(3) },
-		{ "고수", String.valueOf(4) }
+		{ "고급", String.valueOf(3) },
+		{ "달인", String.valueOf(4) }
 	};
 
 	
@@ -143,6 +147,9 @@ public class HiWaySetupActivity extends Activity
 
 	//UI 컨트롤
 	private		Spinner	mSpinIcon, mSpinDestination, mSpinPurpose, mSpinStyle, mSpinLevel;
+	
+	private CheckBox chkCCTVHide, chkPathHide;
+	
 
 
 	/*
@@ -264,6 +271,45 @@ public class HiWaySetupActivity extends Activity
 		adapterLevel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		mSpinLevel.setAdapter(adapterLevel);
 		mSpinLevel.setOnItemSelectedListener(mOnItemSelectedListener); 
+		
+		//5. 지도 표시 방법
+		chkCCTVHide = (CheckBox) this.findViewById(R.id.chkCCTVHide);
+		if (HiWayMapViewActivity.isHideCCTV) {
+			chkCCTVHide.setChecked(true);
+		} else {
+			chkCCTVHide.setChecked(false);
+		}
+		chkCCTVHide.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (buttonView.isChecked()) {
+					HiWayMapViewActivity.isHideCCTV = true;
+				} else {
+					HiWayMapViewActivity.isHideCCTV = false;
+				}
+			}
+		});		
+		
+		chkPathHide = (CheckBox) this.findViewById(R.id.chkPathHide);
+		if (HiWayMapViewActivity.isHidePath) {
+			chkPathHide.setChecked(true);
+		} else {
+			chkPathHide.setChecked(false);
+		}
+		chkPathHide.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (buttonView.isChecked()) {
+					HiWayMapViewActivity.isHidePath = true;
+				} else {
+					HiWayMapViewActivity.isHidePath = false;
+				}
+				
+			}
+		});		
+		
 	}
 	
 	// Spinner의 사용자 입력 처리.
