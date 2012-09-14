@@ -71,7 +71,7 @@
 					<com.google.android.maps.MapView
 						android:id="@+id/id_map" android:layout_width="fill_parent"
 						android:layout_height="fill_parent" android:enabled="true"
-						android:clickable="true" android:apiKey="0kACDo3ev28mztTjGkEOSdpJhvXl9Z6O2goHmRw" />
+						android:clickable="true" android:apiKey="0kACDo3ev28mztTjGkEOSdpJhvXl9Z6O2goHmRw" /> 
 						
 					 <!-- <com.google.android.maps.MapView
 						android:id="@+id/id_map" android:layout_width="fill_parent"
@@ -269,7 +269,7 @@
 					android:paddingLeft="3dip" android:paddingTop="3dip"
 					android:paddingRight="3dip">
 
-					<kr.co.ex.hiwaysnsclient.lib.TransparentPanel
+					<!-- <kr.co.ex.hiwaysnsclient.lib.TransparentPanel
 						android:id="@+id/transparent_panel" android:layout_width="fill_parent"
 						android:layout_height="43dip" android:paddingTop="3dip"
 						android:paddingLeft="3dip" android:paddingBottom="3dip"
@@ -281,9 +281,9 @@
 						<Button android:id="@+id/button_menu_skip"
 							android:layout_width="153dip" android:layout_height="40dip"
 							android:text="Skip!" />
-						<!-- <TextView android:id="@+id/id_txt_msg" android:layout_alignParentTop="true" 
-							android:layout_width="fill_parent" android:layout_height="wrap_content" android:textColor="@color/color_black"></TextView> -->
-					</kr.co.ex.hiwaysnsclient.lib.TransparentPanel>
+						<TextView android:id="@+id/id_txt_msg" android:layout_alignParentTop="true" 
+							android:layout_width="fill_parent" android:layout_height="wrap_content" android:textColor="@color/color_black"></TextView>
+					</kr.co.ex.hiwaysnsclient.lib.TransparentPanel> -->
 
 					<TextView android:id="@+id/TextView02"
 						android:layout_width="fill_parent" android:layout_height="50dip"></TextView>
