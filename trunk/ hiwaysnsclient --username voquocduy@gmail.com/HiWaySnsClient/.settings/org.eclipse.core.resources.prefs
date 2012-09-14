@@ -2,6 +2,7 @@
 eclipse.preferences.version=1
 encoding//res/raw/cctv_data.csv=UTF-8
 encoding//res/raw/new_cctv_nat_5.csv=UTF-8
+encoding//res/raw/new_national_cctv.csv=UTF-8
 encoding//res/raw/poi_list.csv=UTF-8
 encoding//src/kr/co/ex/hiwaysnsclient/lib/AudioPlayer.java=UTF-8
 encoding//src/kr/co/ex/hiwaysnsclient/lib/AudioRecorder.java=UTF-8
