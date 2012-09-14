@@ -1,11 +1,22 @@
 package kr.co.ex.hiwaysnsclient.map;
 
-import kr.co.ex.hiwaysnsclient.main.*;
-import kr.co.ex.hiwaysnsclient.lib.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.co.ex.hiwaysnsclient.lib.TrOasisCctv;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisCommClient;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisConstants;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisFtmsAgent;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisIntentParam;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisLocGps;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisLocation;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisMember;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisTraffic;
+import kr.co.ex.hiwaysnsclient.lib.TrOasisVmsAgent;
+import kr.co.ex.hiwaysnsclient.lib.ViewerCctvActivity;
+import kr.co.ex.hiwaysnsclient.lib.ViewerMediaActivity;
+import kr.co.ex.hiwaysnsclient.main.HiWayBasicMapActivity;
+import kr.co.ex.hiwaysnsclient.main.R;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,9 +25,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Paint.Align;
 import android.graphics.Point;
 import android.graphics.RectF;
-import android.graphics.Paint.Align;
 import android.net.Uri;
 import android.os.Parcelable;
 import android.util.Log;
@@ -374,8 +385,9 @@ public class MapOverlayFriends extends Overlay
 		if ( shadow == false )
 		{
 			//나의 괘적 그리기.
-			markMyRoad( canvas, myRes, proj );
-
+			if (!HiWayMapViewActivity.isHidePath){
+				markMyRoad( canvas, myRes, proj );
+			}
 			//교통정보 위치를 지도위에 표시.
 			//Log.e("111", "mListTraffics.size()=" + mListTraffics.size());
 			if ( mParent.mZoomLevel >= MAX_ZOOM_4_USER_MEDIA )
@@ -406,9 +418,11 @@ public class MapOverlayFriends extends Overlay
 			}
 
 			//CCTV 목록 그리기 - Google 지도 Zoom Level 14 이하에서만 CCTV 카메라 표시.
-			if( mParent.mMsgFilterType != TrOasisConstants.MSG_FILTER_TYPE_USER )
-			{
-				if ( mParent.mZoomLevel >= MAX_ZOOM_4_CCTV )	markCctvList( canvas, myRes, proj );
+			if (!HiWayMapViewActivity.isHideCCTV){	
+				if( mParent.mMsgFilterType != TrOasisConstants.MSG_FILTER_TYPE_USER )
+				{
+					if ( mParent.mZoomLevel >= MAX_ZOOM_4_CCTV )	markCctvList( canvas, myRes, proj );
+				}
 			}
 
 			//FTMS Agent 목록 그리기 .
@@ -684,12 +698,14 @@ public class MapOverlayFriends extends Overlay
 			//Log.i( "CCTV", "(" + index + ")" + HiWayBasicMapActivity.mListCctv.get(index).mCctvPosLat + "," + HiWayBasicMapActivity.mListCctv.get(index).mCctvPosLng + ":" + ptScr.x + "," + ptScr.y);
 				
 			//지도위에 CCTV 위치표시.
-			RectF	ovalMark	= new RectF( ptScr.x - TRAFFIC_CCTV_RECT_WIDTH, ptScr.y - TRAFFIC_CCTV_RECT_HEIGHT, ptScr.x + TRAFFIC_CCTV_RECT_WIDTH, ptScr.y + TRAFFIC_CCTV_RECT_HEIGHT );
-			if (HiWayBasicMapActivity.mListCctv.get(index).isHiWayCCTV()){
-				canvas.drawBitmap( mMarkHiWayCctv, ovalMark.left, ovalMark.top, mPaintText );
-			} else {
-				canvas.drawBitmap( mMarkNationalCctv, ovalMark.left, ovalMark.top, mPaintText );
-			}
+					
+				RectF	ovalMark	= new RectF( ptScr.x - TRAFFIC_CCTV_RECT_WIDTH, ptScr.y - TRAFFIC_CCTV_RECT_HEIGHT, ptScr.x + TRAFFIC_CCTV_RECT_WIDTH, ptScr.y + TRAFFIC_CCTV_RECT_HEIGHT );
+				if (HiWayBasicMapActivity.mListCctv.get(index).isHiWayCCTV()){
+					canvas.drawBitmap( mMarkHiWayCctv, ovalMark.left, ovalMark.top, mPaintText );
+				} else {
+					canvas.drawBitmap( mMarkNationalCctv, ovalMark.left, ovalMark.top, mPaintText );
+				}
+			
 			
 			//canvas.drawCircle(ptScr.x, ptScr.y, 4, mPaintBlack);
 			//canvas.drawRect(ovalMark, mPaintBlack);
