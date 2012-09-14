@@ -41,10 +41,10 @@ public class HiWayPoiListActivity extends HiWayBasicActivity
 	public		MessageAdapter			mAdaptorMsg		= null;
 
 	private		String[]	mListName	=	{
-												"서울/경기권",	"강원권",		"충청권",		"호남권",		"영남권"
+												"서울/경기권",	"강원권",		"충청권",		"경상권",		"전라권"
 											};
 	private		String[]	mListKey	=	{
-												"서울/경기권",	"강원권",		"충청권",		"호남권",		"영남권"
+												"서울/경기권",	"강원권",		"충청권",		"경상권",		"전라권"
 											};
 
 	
