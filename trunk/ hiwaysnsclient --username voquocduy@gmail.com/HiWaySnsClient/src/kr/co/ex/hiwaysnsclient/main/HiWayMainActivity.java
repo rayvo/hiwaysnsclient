@@ -1,6 +1,5 @@
 package kr.co.ex.hiwaysnsclient.main;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.ex.hiwaysnsclient.cctv.HiWayCctvListActivity;
@@ -19,21 +18,26 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ExpandableListView;
-import android.widget.ExpandableListView.OnChildClickListener;
-import android.widget.ExpandableListView.OnGroupClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.facebook.android.R.id;
 
 public class HiWayMainActivity extends HiWayBasicActivity
 {
@@ -355,7 +359,7 @@ public class HiWayMainActivity extends HiWayBasicActivity
 	private TrOASISDatabase db;
 	
 	protected void loadMessage(){
-		
+		/*
 		listView = (ExpandableListView) findViewById(R.id.listView);
 
 		listView.setOnChildClickListener(new OnChildClickListener() {
@@ -366,7 +370,7 @@ public class HiWayMainActivity extends HiWayBasicActivity
 				/*
 				 * Toast.makeText(getBaseContext(), "Child clicked",
 				 * Toast.LENGTH_LONG).show();
-				 */
+				 
 				//audioPlayer("");
 				return false;
 			}
@@ -377,19 +381,94 @@ public class HiWayMainActivity extends HiWayBasicActivity
 			@Override
 			public boolean onGroupClick(ExpandableListView arg0, View arg1,
 					int arg2, long arg3) {
-				/*
+				
 				 * Toast.makeText(getBaseContext(), "Group clicked",
 				 * Toast.LENGTH_LONG).show();
-				 */
-				TextView tv = (TextView) arg1.findViewById(R.id.tvGroup) ;
+				 
+				TrOASISMessage message = messages.get(arg2);
+				dspDlgExit(message.getTitle(), message.getContent());
 				//audioPlayer(tv.getText().toString().trim());
 				return false;
 			}
-		});
+		});*/
 		db = new TrOASISDatabase(this);
 		recvMessage();		
 		
 	}
+	
+	public void dspDlgMessage1(int messageOrder) {
+		
+		AlertDialog.Builder dlgAlert = new AlertDialog.Builder(this);
+		dlgAlert.setInverseBackgroundForced(false);
+		TrOASISMessage message = messages.get(messageOrder);
+		dlgAlert.setTitle(message.getTitle());
+		dlgAlert.setMessage(message.getContent());
+		dlgAlert.setPositiveButton(R.string.caption_btn_yes,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dlg, int arg) {
+						procExit();
+					}
+				});		
+		dlgAlert.show();
+		
+		
+	}
+	
+	private void OpenScreenDialog(int messageOrder){
+	     
+	    AlertDialog.Builder screenDialog = new AlertDialog.Builder(this);
+	    TrOASISMessage message = messages.get(messageOrder);
+	    screenDialog.setInverseBackgroundForced(true);
+	    
+	    //screenDialog.set
+    
+	    LinearLayout titleLayout = new LinearLayout(this);
+	    LinearLayout.LayoutParams titleLayoutParams = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+	    titleLayout.setPadding(0,3,0,5);
+	    
+	    //titleLayoutParams.setMargins(10,10,10,10);
+	    titleLayout.setLayoutParams(titleLayoutParams);
+	    titleLayout.setBackgroundColor(Color.parseColor("#C7C7C7"));
+	    
+	    TextView titleTV = new TextView(this);
+	    titleTV.setText(message.getTitle());	
+	    LinearLayout.LayoutParams tvTitleLayoutParams = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+	    tvTitleLayoutParams.setMargins(10,10,10,10);
+	    titleTV.setLayoutParams(tvTitleLayoutParams);	    
+	    titleTV.setTextColor(R.color.color_black);
+	    titleTV.setTextSize(20);	
+	    
+	    titleLayout.addView(titleTV);
+	    
+	    screenDialog.setCustomTitle(titleLayout);
+	     
+	    LinearLayout dialogLayout = new LinearLayout(this);
+	    LinearLayout.LayoutParams contentLayoutParams = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
+	    dialogLayout.setLayoutParams(contentLayoutParams);	
+	    //dialogLayout.setPadding(0, 20, 0, 20);
+	    //dialogLayout.setBackgroundColor(Color.RED);
+	    
+	    
+	    TextView contentTV = new TextView(this);
+	    LinearLayout.LayoutParams tvContentLayoutParams = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+	    tvContentLayoutParams.setMargins(10,10,10,10);
+	    contentTV.setLayoutParams(tvContentLayoutParams);
+	    contentTV.setText(message.getContent());  	        
+	    //contentTV.setBackgroundColor(Color.parseColor("#C7C7C7"));
+	    contentTV.setTextColor(R.color.color_label);	     
+    
+	    dialogLayout.addView(contentTV);
+	    screenDialog.setView(dialogLayout);
+
+	        
+	    screenDialog.setPositiveButton(R.string.caption_btn_ok,
+				new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dlg, int arg) {
+						procExit();
+					}
+				});	
+	    screenDialog.show();
+	   }
 	
 	protected void recvMessage() {
 
@@ -412,25 +491,53 @@ public class HiWayMainActivity extends HiWayBasicActivity
 
 	private void displayData() {
 		messages =	db.getActiveMessages();
+		TextView firstMsgTitle = (TextView) findViewById(id.firstMsgTitle) ;
+		TextView firstDate = (TextView) findViewById(id.firstDate) ;
+		
+		TextView secondMsgTitle = (TextView) findViewById(id.secondMsgTitle) ;
+		TextView secondDate = (TextView) findViewById(id.secondDate) ;
 		if (messages == null) {
 			
 			Toast.makeText(getBaseContext(), "List is empty",
 					Toast.LENGTH_SHORT).show();
+			
+			firstMsgTitle.setText("No Message");
+			firstDate.setVisibility(View.GONE);			
 		} else {
 			
-			// Initialize the adapter with blank groups and children
-			// We will be adding children on a thread, and then update the
-			// ListView
-			adapter = new ExpandableListAdapter(this, new ArrayList<String>(), new ArrayList<String>(),
-					new ArrayList<ArrayList<TrOASISMessage>>());
-
-			for (int i = 0; i < messages.size(); i++) {
-				adapter.addItem(messages.get(i));
-				adapter.notifyDataSetChanged();
+			TrOASISMessage firstMsg = messages.get(0);
+			TableRow firstRow = (TableRow) findViewById(id.firstMsg);
+			if (firstMsg!=null) {
+				firstMsgTitle.setText(firstMsg.getTitle());
+				firstDate.setText(firstMsg.getCreatedDate());
+				firstRow.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {						
+						OpenScreenDialog(0);						
+					}
+				});
+				
 			}
+			TrOASISMessage secondMsg = messages.get(1);
+			
+			TableRow secondRow = (TableRow) findViewById(id.secondMsg);
+			if (secondMsg!=null) {
+				
+				secondRow.setVisibility(View.VISIBLE);
+				secondMsgTitle.setText(secondMsg.getTitle());
+				secondDate.setText(secondMsg.getCreatedDate());
+				secondRow.setOnClickListener(new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						OpenScreenDialog(1);						
+					}
+				});
+			} else {				
+				secondRow.setVisibility(View.INVISIBLE);
+			}		
 
-			// Set this blank adapter to the list view
-			listView.setAdapter(adapter);
 		}
 	}	
 	
