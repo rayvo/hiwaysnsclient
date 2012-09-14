@@ -44,4 +44,8 @@
 	<color name="sns_list_text_sub_1">#FF0000FF</color>
 	<color name="sns_list_text_sub_2">#FF000000</color>
 	<color name="sns_list_text_sub_3">#FF555555</color>
+	<style name="myCoolDialog" parent="android:Theme.Dialog"> 
+        <item name="android:windowBackground">@drawable/viewer_bkgnd</item>
+        <item name="android:colorForeground">#f0f0</item> 
+    </style> 
 </resources>
