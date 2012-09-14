@@ -122,6 +122,10 @@ public class HiWayMapViewActivity extends HiWayBasicMapActivity
 	// 입력 미디어 정보.
 	protected int mMediaType = TrOasisConstants.TYPE_ETC_NONE;
 	protected String mMediaPath = "";
+	
+	public static boolean isHideCCTV = false;
+	public static boolean isHidePath = false;
+	
 
 	// VMS 표출정보.
 	protected String mPreVmsID = "";
@@ -382,7 +386,7 @@ public class HiWayMapViewActivity extends HiWayBasicMapActivity
 	}
 	
 //	TODO RayVo
-   protected void recvMessage() {
+   protected void recvMessage1() {
 		mCountMessageComm++;
 		if ((mCountMessageComm % COUNT_MESSAGE_COMM) != 1) {
 			return;
@@ -394,7 +398,7 @@ public class HiWayMapViewActivity extends HiWayBasicMapActivity
 			if (mTrOasisClient.mStatusCode == 0) {
 				if (messageList != null) {
 					db.storeMessage(messageList);
-					viewMessage();
+					viewMessage1();
 				}
 			}
 		} catch (Exception e) {
@@ -416,7 +420,7 @@ public class HiWayMapViewActivity extends HiWayBasicMapActivity
 	private TrOASISDatabase db;
 
 	
-	public void viewMessage() {		
+	public void viewMessage1() {		
 		verticalScrollview = (ScrollView) findViewById(R.id.vertical_scrollview_id);
 		verticalOuterLayout = (LinearLayout) findViewById(R.id.vertical_outer_layout_id);
 
@@ -858,7 +862,7 @@ public class HiWayMapViewActivity extends HiWayBasicMapActivity
 		
 
 		// 처음에 나타나는 메뉴 버튼.
-		Button btnMenu;
+		/*Button btnMenu;
 		btnMenu = (Button) findViewById(R.id.button_menu_skip);
 		btnMenu.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -879,7 +883,7 @@ public class HiWayMapViewActivity extends HiWayBasicMapActivity
 				// 목적지 대화상자 출력.
 				procDestination();
 			}
-		});
+		});*/
 	}
 
 	// 지도화면을 갱신하는 모듈.
@@ -1629,7 +1633,7 @@ public class HiWayMapViewActivity extends HiWayBasicMapActivity
 	public void versionUpdateDialog() {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Your current version is not up-to-date. Would you like to upgrade the latest version?");
+		builder.setTitle("최신 버전이 아닙니다. 지금 업데이트 하시겠습니까?");
 
 		builder.setPositiveButton(R.string.caption_btn_ok,
 				new DialogInterface.OnClickListener() {
